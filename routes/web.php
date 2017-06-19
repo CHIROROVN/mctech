@@ -38,7 +38,7 @@ Route::group(['prefix' => 'manage', 'namespace' => 'Backend'], function () {
     Route::get('/photo/regist_complete', ['as' => 'backend.photos.regist_complete', 'uses' => 'PhotoController@registComplete']);
     Route::get('/photo/delete_confirm', ['as' => 'backend.photos.delete_cnf', 'uses' => 'PhotoController@deleteCnf']);
     Route::get('/photo/delete_complete', ['as' => 'backend.photos.delete_complete', 'uses' => 'PhotoController@deleteComlete']);
-    Route::get('/photo/detail', ['as' => 'backend.photos.detail', 'uses' => 'PhotoController@detail']);
+    Route::get('/photo/detail/{id}', ['as' => 'backend.photos.detail', 'uses' => 'PhotoController@detail']);
     Route::get('/photo/change', ['as' => 'backend.photos.change', 'uses' => 'PhotoController@change']);
     Route::post('/photo/change', ['as' => 'backend.photos.change', 'uses' => 'PhotoController@postChange']);
     Route::get('/photo/change_confirm', ['as' => 'backend.photos.change_cnf', 'uses' => 'PhotoController@changeCnf']);
