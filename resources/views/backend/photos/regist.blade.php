@@ -12,6 +12,9 @@
               <td class="col-title">種類 <span class="note_required">※</span></td>
               <td width="83%">
                 <input type="input" name="photo_name" value="{{old('photo_name')}}" class="form-control form-control--default">
+                  @if ($errors->first('photo_name'))
+                    <span class="help-block" for="photo_name"><i class="fa fa-exclamation-triangle warning" aria-hidden="true"></i> {!! $errors->first('photo_name') !!} </span>
+                  @endif
               </td>
             </tr>
             </tr>
@@ -19,6 +22,9 @@
               <td class="col-title">価格 <span class="note_required">※</span></td>
               <td colspan="7">
                 <input type="input" name="photo_price" value="{{old('photo_price')}}" class="form-control form-control--default">
+                  @if ($errors->first('photo_price')) 
+                  <span class="help-block" for="photo_price">※{!! $errors->first('photo_price') !!} </span>
+                  @endif
               </td>
             </tr>
                  

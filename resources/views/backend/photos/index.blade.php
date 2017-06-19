@@ -19,7 +19,6 @@
                   @endforeach
                 @endif
               </select>
-                <!-- <input value="検索" type="button" class="btn btn-sm btn-page  mar-left10"> -->
                 <button type="submit" class="btn btn-sm btn-page  mar-left10">検索</button>
               {!! Form::close() !!}
               </td>

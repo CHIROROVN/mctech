@@ -556,5 +556,14 @@ input.shift_txt {
 
 /*Chiroro Viet added*/
 span.note_required {
-    color: #f36161;
+  color: #E92324;
+}
+
+span.help-block {
+  color: #E92324;
+}
+
+i.warning {
+  color: #E92324;
+  font-size: 13px;
 }
