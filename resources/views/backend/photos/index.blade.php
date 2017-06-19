@@ -12,9 +12,10 @@
               <td width="70%">
               {!! Form::open( ['id' => 'frmSearch', 'method' => 'get', 'route' => 'backend.photos.index']) !!}
               <select class="form-control form-control--auto mar-left10" name="photo_id">
-                @if(count($photos)>0)
-                  @foreach($photos as $pt)
-                  <option value="{{$pt->photo_id}}">{{$pt->photo_name}}</option>
+                <option value="all" @if($pt_selected == 'all' || $pt_selected == '') selected="" @endif>すべて</option>
+                @if(count($list_photo)>0)
+                  @foreach($list_photo as $k => $pt)
+                  <option value="{{$k}}" @if($pt_selected == $k) selected="" @endif>{{$pt}}</option>
                   @endforeach
                 @endif
               </select>
@@ -31,26 +32,18 @@
               <td width="72%"  class="col-title">価格</td>
               <td width="28%"  class="col-title">詳細</td>
             </tr>
-            <tr>
-              <td>レジン築盛</td>
-              <td align="right">3,000</td>
-              <td><input value="詳細" onClick="location.href='manage_photo_detail.html'" type="button" class="btn btn-sm btn-page  mar-left10"></td>
-            </tr>
-            <tr>
-              <td>レジン築盛</td>
-              <td align="right">3,000</td>
-              <td><input value="詳細" onClick="location.href='manage_photo_detail.html'" type="button" class="btn btn-sm btn-page  mar-left10"></td>
-            </tr>
-            <tr>
-              <td>レジン築盛</td>
-              <td align="right">3,000</td>
-              <td><input value="詳細" onClick="location.href='manage_photo_detail.html'" type="button" class="btn btn-sm btn-page  mar-left10"></td>
-            </tr>
-            <tr>
-              <td>レジン築盛</td>
-              <td align="right">3,000</td>
-              <td><input value="詳細" onClick="location.href='manage_photo_detail.html'" type="button" class="btn btn-sm btn-page  mar-left10"></td>
-            </tr>
+             @if(count($photos)>0)
+                  @foreach($photos as $photo)
+                  <tr>
+                    <td>{{$photo->photo_name}}</td>
+                    <td align="right">{{number_format($photo->photo_price)}}</td>
+                    <td><input value="詳細" onClick="location.href='{{route('backend.photos.detail', $photo->photo_id)}}'" type="button" class="btn btn-sm btn-page  mar-left10"></td>
+                </tr>
+                  @endforeach
+              @else
+              <tr><td colspan="3" style="text-align: center;">該当するデータがありません。</td></tr>
+              @endif
+            
           </table>
           <div class="col-md-12 text-center pagination">
               <button type="submit" class="btn btn-sm btn-page no-border" name="prev" value="" id="prev" onclick="location.href=''">&lt; 前の30件</button>&ensp;&ensp;&ensp;

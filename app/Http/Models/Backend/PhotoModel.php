@@ -28,16 +28,16 @@ class PhotoModel
 
     //get all photo list
     public function getAllPhoto($photo_id=null){
-        if(!empty($photo_id)){
-            return DB::table($this->table)->where('last_kind', '<>', DELETE)->where('photo_id', $photo_id)->orderBy('last_date', '=', 'desc')->paginate();
+        if(empty($photo_id) || $photo_id == 'all'){
+            return DB::table($this->table)->where('last_kind', '<>', DELETE)->orderBy('last_date', '=', 'desc')->simplePaginate(3);
         }else{
-            return DB::table($this->table)->where('last_kind', '<>', DELETE)->orderBy('last_date', '=', 'desc')->paginate();
+            return DB::table($this->table)->where('last_kind', '<>', DELETE)->where('photo_id', $photo_id)->orderBy('last_date', '=', 'desc')->simplePaginate(3);
         }
     }
 
-    // public function getListCat(){
-    //     return DB::table($this->table)->where('last_kind', '<>', DELETE)->orderBy('order', '=', 'asc')->pluck('name', 'id');
-    // }
+    public function getListPhoto(){
+        return DB::table($this->table)->where('last_kind', '<>', DELETE)->orderBy('last_date', '=', 'desc')->pluck('photo_name', 'photo_id');
+    }
 
     public function insert($data)
     {

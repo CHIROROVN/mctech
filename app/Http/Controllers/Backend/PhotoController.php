@@ -13,12 +13,13 @@ class PhotoController extends BackendController
     */
     public function index() { 
         $clsPhoto = new PhotoModel();
+        $data['list_photo'] = $clsPhoto->getListPhoto();
         $photo_id = '';
         if( (Input::get('photo_id') != null) ){
             $photo_id = Input::get('photo_id');
         }
+        $data['pt_selected'] = Input::get('photo_id');
         $data['photos'] = $clsPhoto->getAllPhoto($photo_id);
-            echo '<pre>'; print_r($data); echo '</pre>';
         return view('backend.photos.index', $data);
     }
 
@@ -27,7 +28,7 @@ class PhotoController extends BackendController
     | get view photo regist
     |-----------------------------------
     */
-    public function regist() {        
+    public function regist() {
         return view('backend.photos.regist');
     }
 
@@ -36,7 +37,7 @@ class PhotoController extends BackendController
     | post view photo regist
     |-----------------------------------
     */
-    public function postRegist() {        
+    public function postRegist() {
         
     } 
 

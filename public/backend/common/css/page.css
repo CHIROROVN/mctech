@@ -553,3 +553,8 @@ input.shift_txt {
 	top:2px;
 	left:2px;
 }
+
+/*Chiroro Viet added*/
+span.note_required {
+    color: #f36161;
+}

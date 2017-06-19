@@ -9,16 +9,17 @@
           <table width="80%" class="table table-bordered treatment2-list">
             <tr>
             <tr>
-              <td class="col-title">種類</td>
+              <td class="col-title">種類 <span class="note_required">※</span></td>
               <td width="83%">
-<input type="input" class="form-control form-control--default">              </td>
-              
+                <input type="input" name="photo_name" value="{{old('photo_name')}}" class="form-control form-control--default">
+              </td>
             </tr>
             </tr>
             <tr>
-              <td class="col-title">価格</td>
+              <td class="col-title">価格 <span class="note_required">※</span></td>
               <td colspan="7">
-                <input type="input" class="form-control form-control--default">　</td>
+                <input type="input" name="photo_price" value="{{old('photo_price')}}" class="form-control form-control--default">
+              </td>
             </tr>
                  
               </td>
