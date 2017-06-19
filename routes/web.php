@@ -107,6 +107,11 @@ Route::group(['prefix' => 'manage', 'namespace' => 'Backend'], function () {
     Route::get('/shifts/holiday/regist_cnf', ['as' => 'backend.shifts.holiday.regist_cnf', 'uses' => 'ShiftController@holidayRegistCnf']);
     Route::get('/shifts/holiday/regist_complete', ['as' => 'backend.shifts.holiday.regist_complete', 'uses' => 'ShiftController@holidayRegistComplete']);
 
+    //material
+    Route::get('/materials', ['as' => 'backend.materials.index', 'uses' => 'MaterialController@index']);
+    Route::get('/materials/regist', ['as' => 'backend.materials.regist', 'uses' => 'MaterialController@getRegist']);
+    Route::post('/materials/regist', ['as' => 'backend.materials.regist', 'uses' => 'MaterialController@postRegist']);
+
     /*
     |--------------------------------------------------------------------------
     | Backend manage page
