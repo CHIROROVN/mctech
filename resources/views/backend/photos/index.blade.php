@@ -20,7 +20,7 @@
               </td>
             </tr>
           </table>
-          <input value="新規登録"onClick="location.href='manage_photo_in.html'" type="button" class="btn btn-sm btn-page">
+          <input value="新規登録"onClick="location.href='{{route('backend.photos.regist')}}'" type="button" class="btn btn-sm btn-page">
           <table class="table table-bordered table-striped treatment2-list">
             <tr>
               <td width="28%"  class="col-title">種類</td>

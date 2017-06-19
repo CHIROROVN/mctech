@@ -1,5 +1,8 @@
 <?php namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Backend\BackendController;
+use App\Http\Models\Backend\PhotoModel;
+use Input;
+use Request;
 
 class PhotoController extends BackendController
 {
@@ -8,8 +11,10 @@ class PhotoController extends BackendController
     | get view photo
     |-----------------------------------
     */
-    public function index() {        
-        return view('backend.photos.index');
+    public function index() { 
+        $clsPhoto = new PhotoModel();
+        $data['photos'] = $clsPhoto->getAllPhoto();       
+        return view('backend.photos.index', $data);
     }
 
     /*
