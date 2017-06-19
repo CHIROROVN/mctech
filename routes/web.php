@@ -129,5 +129,6 @@ Route::group(['prefix' => 'users', 'namespace' => 'Frontend'], function () {
     |--------------------------------------------------------------------------
     */
     Route::get('/calendar', ['as' => 'frontend.calendar.index', 'uses' => 'CalendarController@index']);
+    
 
 });
