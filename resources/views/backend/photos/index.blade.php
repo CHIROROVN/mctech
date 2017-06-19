@@ -9,14 +9,18 @@
           <table class="table table-bordered treatment2-list">
             <tr>
               <td width="8%" class="col-title">種類</td>
-              <td width="70%"><select class="form-control form-control--auto mar-left10">
-                <option>レジン築盛</option>
-                  <option>レジン築盛</option>
-                  <option>レジン築盛</option>
-                  <option>レジン築盛</option>
-                </select>
-                　　　　
-                <input value="検索" type="button" class="btn btn-sm btn-page  mar-left10">
+              <td width="70%">
+              {!! Form::open( ['id' => 'frmSearch', 'method' => 'get', 'route' => 'backend.photos.index']) !!}
+              <select class="form-control form-control--auto mar-left10" name="photo_id">
+                @if(count($photos)>0)
+                  @foreach($photos as $pt)
+                  <option value="{{$pt->photo_id}}">{{$pt->photo_name}}</option>
+                  @endforeach
+                @endif
+              </select>
+                <!-- <input value="検索" type="button" class="btn btn-sm btn-page  mar-left10"> -->
+                <button type="submit" class="btn btn-sm btn-page  mar-left10">検索</button>
+              {!! Form::close() !!}
               </td>
             </tr>
           </table>

@@ -27,8 +27,12 @@ class PhotoModel
     }
 
     //get all photo list
-    public function getAllPhoto(){
-        return DB::table($this->table)->where('last_kind', '<>', DELETE)->orderBy('order', '=', 'asc')->paginate();
+    public function getAllPhoto($photo_id=null){
+        if(!empty($photo_id)){
+            return DB::table($this->table)->where('last_kind', '<>', DELETE)->where('photo_id', $photo_id)->orderBy('last_date', '=', 'desc')->paginate();
+        }else{
+            return DB::table($this->table)->where('last_kind', '<>', DELETE)->orderBy('last_date', '=', 'desc')->paginate();
+        }
     }
 
     // public function getListCat(){
