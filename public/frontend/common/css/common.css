@@ -1,0 +1,321 @@
+
+/*--------------------------------------------------------------------------------------------------
+
+   page
+         - header
+         - content
+
+
+--------------------------------------------------------------------------------------------------*/
+
+
+/*reset-------------------------------------------------*/
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+} 
+
+body,div,h1,h2,h3,h4,h5,h6,p,dl,dt,dd,ul,header,section,article,aside,footer,nav,li {
+  margin: 0;
+  padding: 0;
+}
+
+table {
+ border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img {
+  border: none;
+  vertical-align: top;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+header,section,article,aside,footer,nav {
+ display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+label {
+  margin-bottom:0px;
+}
+/*-------------------------------------------------reset*/
+
+
+/*common-------------------------------------------------*/
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 1.5em;
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  line-height: 1.4;
+  color: #333;
+  background:#fbf9f9;
+  height:600px;
+}
+
+a {
+  text-decoration:none;
+  cursor:pointer;
+  color:#333;
+}
+a:link {
+  /*color: #F10000;*/
+}
+
+a:visited {
+  /*color: #F10000;*/
+}
+
+a:hover, a:active {
+  color: #555;
+}
+
+.clear:after {
+ content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.clear {
+  clear:both;
+}
+
+input {
+  border-color:#fff;
+}
+
+table {
+  margin-top:40px;
+}
+
+h1 {
+  font-size:25px;
+  font-weight:bold;
+}
+
+/*-------------------------------------------------common*/
+
+
+/*------------------------------------------------------------------------------------------------
+  header
+--------------------------------------------------------------------------------------------------*/
+
+header {
+  background:#00b2b2;
+  padding:20px;
+  opacity:0.8;
+  filter: alpha(opacity=80); /* For IE8 and earlier */
+  border-bottom:2px solid #d7d6d5;
+  -webkit-box-shadow: 2px 2px 2px 4px #d7d6d5;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    2px 2px 2px 4px #d7d6d5;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         2px 2px 2px 4px #d7d6d5;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  width:100%;
+  color:#fff;
+}
+
+header h1 {
+  font-size:18px;
+  text-transform: uppercase;
+  font-weight:bold;
+}
+
+/*------------------------------------------------------------------------------------------------
+  content
+--------------------------------------------------------------------------------------------------*/
+
+.container {
+  width:100%;
+  padding:0px 20px;
+}
+
+.mar-left5 {
+  margin-left:5px;
+}
+
+.btn {
+  color:#fff;
+}
+
+.btn:hover {
+  color:#fff;
+}
+
+.btn-login {
+  background-color: #066e6e;
+  border-color: #025c5c;
+}
+
+.btn-login:hover {
+  background-color: #055959;
+  border-color: #044e4e;
+}
+
+.btn-page {
+  background-color: #34a1a1;
+  border-color: #199797;
+}
+
+.btn-page:hover {
+  background-color: #158b8b;
+  border-color: #097a7a;
+}
+
+.btn-header {
+  background-color: #54cfcf;
+  border-color: #1fc2c2;
+}
+
+.btn-header:hover {
+  background-color: #4ec2c2;
+  border-color: #20b8b8;
+}
+
+.btn-mar-right {
+  margin-right:20px;
+}
+
+.page-right {
+  text-align:right;
+}
+
+.form-control--default {
+  display: inline;
+  width: 250px;
+  height: 30px;
+  padding: 5px;
+  border-radius:3px;
+}
+
+.form-control--small {
+  display: inline;
+  width: 125px!important;
+  height: 30px;
+  padding: 5px;
+  border-radius:3px;
+  color:#257272;
+}
+
+.form-control--auto {
+  display: inline;
+  width: auto!important;
+  height: 30px;
+  padding: 5px;
+  border-radius:3px;
+  color:#257272;
+}
+
+.form-control--smaller {
+  display: inline;
+  width: 90px!important;
+  height: 30px;
+  padding: 5px;
+  border-radius:3px;
+}
+
+.form-control--small-xs {
+  display: inline;
+  width: 60px;
+  height: 25px;
+  padding: 3px;
+  border-radius:3px;
+}
+
+.form-control--mar-right {
+  margin-right:10px;
+}
+
+.form-control {
+  height:30px;
+}
+
+.fl-right {
+  float:right;
+}
+
+.mar-bottom {
+  margin-bottom:10px;
+}
+
+.margin-bottom {
+  margin-bottom: 40px;
+}
+
+.mar-top20 {
+  margin-top:20px;
+}
+
+.margin-left-33 {
+  margin-left: 33px;
+}
+
+.mar-right {
+  margin-right:20px;
+}
+
+.mar-right10 {
+  margin-right:10px;
+}
+.mar-left10 {
+  margin-left:10px;
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td,
+.table-striped > tbody > tr:nth-child(2n+1) > th {
+  background-color: #f3f7f7;
+}
+
+.table-striped > tbody > tr td.bg-yellow {
+  background-color: #f5f0d1;
+}
+
+.text-orange {
+  color:#d25c11;
+}
+
+.with-errors {
+  color:#d41010;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+  vertical-align:top;
+}
+
+
+/*________________________User_______________________*/
+
+/*------------------------------------------------------------------------------------------------
+  header
+--------------------------------------------------------------------------------------------------*/
+
+.header_u {
+  background:#FEAC01;
+  padding:14px;
+  opacity:0.8;
+  filter: alpha(opacity=80); /* For IE8 and earlier */
+  border-bottom:2px solid #d7d6d5;
+  -webkit-box-shadow: 2px 2px 2px 4px #d7d6d5;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    2px 2px 2px 4px #d7d6d5;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         2px 2px 2px 4px #d7d6d5;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  width:100%;
+  color:#fff;
+}
+
+.header2_u h1 {
+  font-size:18px;
+  text-transform: uppercase;
+  font-weight:bold;
+}
+
+/*________________________EndUser_______________________*/
