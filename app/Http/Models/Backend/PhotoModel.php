@@ -11,27 +11,27 @@ class PhotoModel
     public function Rules()
     {
         return array(
-                'photo_name'                        => 'required',
-                'price'                             => 'required|numeric',
+                'photo_name'                    => 'required',
+                'photo_price'                   => 'required|numeric',
                 );
     }
 
     public function Messages()
     {
         return array(
-                'photo_name.required'               => trans('validation.error_photo_name_required'),
-                'price.required'               		=> trans('validation.error_price_required'),
-                'price.numeric'               		=> trans('validation.error_price_numeric'),
-                
-                );
+            'photo_name.required'               => trans('validation.error_photo_name_required'),
+            'photo_price.required'              => trans('validation.error_price_required'),
+            'photo_price.numeric'               => trans('validation.error_price_numeric'),
+            
+            );
     }
 
     //get all photo list
     public function getAllPhoto($photo_id=null){
         if(empty($photo_id) || $photo_id == 'all'){
-            return DB::table($this->table)->where('last_kind', '<>', DELETE)->orderBy('last_date', '=', 'desc')->simplePaginate(3);
+            return DB::table($this->table)->where('last_kind', '<>', DELETE)->orderBy('last_date', '=', 'desc')->simplePaginate(PAGINATION);
         }else{
-            return DB::table($this->table)->where('last_kind', '<>', DELETE)->where('photo_id', $photo_id)->orderBy('last_date', '=', 'desc')->simplePaginate(3);
+            return DB::table($this->table)->where('last_kind', '<>', DELETE)->where('photo_id', $photo_id)->orderBy('last_date', '=', 'desc')->simplePaginate(PAGINATION);
         }
     }
 
@@ -46,12 +46,12 @@ class PhotoModel
 
     public function get_by_id($id)
     {
-        return DB::table($this->table)->where('id', $id)->first();
+        return DB::table($this->table)->where('photo_id', $id)->first();
     }
 
     public function update($id, $data)
     {
-        return DB::table($this->table)->where('id', $id)->update($data);
+        return DB::table($this->table)->where('photo_id', $id)->update($data);
     }
 
 }

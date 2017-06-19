@@ -35,14 +35,17 @@ Route::group(['prefix' => 'manage', 'namespace' => 'Backend'], function () {
     Route::get('/photo/regist', ['as' => 'backend.photos.regist', 'uses' => 'PhotoController@regist']);
     Route::post('/photo/regist', ['as' => 'backend.photos.regist', 'uses' => 'PhotoController@postRegist']);
     Route::get('/photo/regist_confirm', ['as' => 'backend.photos.regist_cnf', 'uses' => 'PhotoController@registCnf']);
+    Route::get('/photo/regist_save', ['as' => 'backend.photos.regist_save', 'uses' => 'PhotoController@saveRegist']);
     Route::get('/photo/regist_complete', ['as' => 'backend.photos.regist_complete', 'uses' => 'PhotoController@registComplete']);
-    Route::get('/photo/delete_confirm', ['as' => 'backend.photos.delete_cnf', 'uses' => 'PhotoController@deleteCnf']);
-    Route::get('/photo/delete_complete', ['as' => 'backend.photos.delete_complete', 'uses' => 'PhotoController@deleteComlete']);
-    Route::get('/photo/detail/{id}', ['as' => 'backend.photos.detail', 'uses' => 'PhotoController@detail']);
-    Route::get('/photo/change', ['as' => 'backend.photos.change', 'uses' => 'PhotoController@change']);
-    Route::post('/photo/change', ['as' => 'backend.photos.change', 'uses' => 'PhotoController@postChange']);
-    Route::get('/photo/change_confirm', ['as' => 'backend.photos.change_cnf', 'uses' => 'PhotoController@changeCnf']);
-    Route::get('/photo/change_complete', ['as' => 'backend.photos.change_complete', 'uses' => 'PhotoController@changeComplete']);
+    Route::get('/photo/delete/{id}', ['as' => 'backend.photos.delete_cnf', 'uses' => 'PhotoController@deleteCnf']);
+    Route::get('/photo/save_del/{id}', ['as' => 'backend.photos.save_delete', 'uses' => 'PhotoController@postDelete']);
+    Route::get('/photo/delete/{id}/complete', ['as' => 'backend.photos.delete_complete', 'uses' => 'PhotoController@deleteComplete']);    
+    Route::get('/photo/detail/{id}', ['as' => 'backend.photos.detail', 'uses' => 'PhotoController@detail']);    
+    Route::get('/photo/change/{id}', ['as' => 'backend.photos.change', 'uses' => 'PhotoController@change']);   
+    Route::post('/photo/change/{id}', ['as' => 'backend.photos.change', 'uses' => 'PhotoController@postChange']);
+    Route::get('/photo/change/{id}/confirm', ['as' => 'backend.photos.change_cnf', 'uses' => 'PhotoController@changeCnf']);
+    Route::get('/photo/change/{id}/save', ['as' => 'backend.photos.change_save', 'uses' => 'PhotoController@saveChange']);
+    Route::get('/photo/change/{id}/complete', ['as' => 'backend.photos.change_complete', 'uses' => 'PhotoController@changeComplete']);
 
     /*
     |--------------------------------------------------------------------------
@@ -129,6 +132,6 @@ Route::group(['prefix' => 'users', 'namespace' => 'Frontend'], function () {
     |--------------------------------------------------------------------------
     */
     Route::get('/calendar', ['as' => 'frontend.calendar.index', 'uses' => 'CalendarController@index']);
-    
+
 
 });
