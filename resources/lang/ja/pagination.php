@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'previous' => '&laquo; Previous',
-    'next' => 'Next &raquo;',
+    'previous' => '&lt; 前の'.PAGINATION.'件',
+    'next' => '次の'.PAGINATION.'件 &gt;',
 
 ];

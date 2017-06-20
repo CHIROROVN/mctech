@@ -5,6 +5,6 @@
                 'INSERT'                => 0,
                 'UPDATE'                => 1,
                 'DELETE'                => 9,
-                'PAGINATION'            => 30,
+                'PAGINATION'            => 3,
                     ),
     ];

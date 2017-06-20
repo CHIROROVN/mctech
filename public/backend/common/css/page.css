@@ -381,9 +381,22 @@ textarea {
   line-height:25px;
 }
 
+/*Chiroro Viet added*/
+#page .pagination li {
+  display: inline-block;
+}
+
+/*Chiroro Viet added*/
 #page .pagination a {
-  font-size:20px;
-  padding:20px 5px;
+  //font-size:20px;
+  //padding:20px 5px;
+  background: #158B8B;
+  color: #FFFFF4;
+}
+
+/*Chiroro Viet added*/
+#page .pagination li.disabled {
+  display: none;
 }
 
 #page .icon {

@@ -78,7 +78,7 @@ Route::group(['prefix' => 'manage', 'namespace' => 'Backend'], function () {
     Route::get('/fix/regist_complete', ['as' => 'backend.fix.regist_complete', 'uses' => 'FixController@registComplete']);
     Route::get('/fix/detail', ['as' => 'backend.fix.detail', 'uses' => 'FixController@detail']);
     Route::get('/fix/delete_confirm', ['as' => 'backend.fix.delete_cnf', 'uses' => 'FixController@deleteCnf']);
-    Route::get('/lesfixson/delete_complete', ['as' => 'backend.fix.delete_complete', 'uses' => 'FixController@deleteComlete']);
+    Route::get('/fix/delete_complete', ['as' => 'backend.fix.delete_complete', 'uses' => 'FixController@deleteComlete']);
     Route::get('/fix/detail', ['as' => 'backend.fix.detail', 'uses' => 'FixController@detail']);
     Route::get('/fix/change', ['as' => 'backend.fix.change', 'uses' => 'FixController@change']);
     Route::post('/fix/change', ['as' => 'backend.fix.change', 'uses' => 'FixController@postChange']);
