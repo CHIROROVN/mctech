@@ -10,7 +10,8 @@
 <link href="{{ asset('') }}public/backend/common/css/import.css" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('') }}public/backend/js/remodal/remodal.css">
 <link rel="stylesheet" href="{{ asset('') }}public/backend/js/remodal/remodal-default-theme.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="{{ asset('') }}public/backend/common/css/jquery-ui.min.css">
+<script src="{{ asset('') }}public/backend/common/js/jquery.min.js"></script>
 <script src="{{ asset('') }}public/backend/js/remodal/remodal.min.js"></script>
 </head>
 <body>

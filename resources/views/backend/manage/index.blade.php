@@ -9,8 +9,8 @@
           <ul class="list-manage">
             <li>
               <h4>装置管理</h4>
-              <p>├<a href="manage_app_in.html">登録</a></p>
-              <p>└<a href="manage_app_search-list.html">検索・一覧</a></p>
+              <p>├<a href="{{ route('backend.materials.regist') }}">登録</a></p>
+              <p>└<a href="{{ route('backend.materials.index') }}">検索・一覧</a></p>
             </li>
             <li>
               <h4>オプション管理</h4>

@@ -111,9 +111,18 @@ Route::group(['prefix' => 'manage', 'namespace' => 'Backend'], function () {
     Route::get('/shifts/holiday/regist_complete', ['as' => 'backend.shifts.holiday.regist_complete', 'uses' => 'ShiftController@holidayRegistComplete']);
 
     //material
-    Route::get('/materials', ['as' => 'backend.materials.index', 'uses' => 'MaterialController@index']);
-    Route::get('/materials/regist', ['as' => 'backend.materials.regist', 'uses' => 'MaterialController@getRegist']);
-    Route::post('/materials/regist', ['as' => 'backend.materials.regist', 'uses' => 'MaterialController@postRegist']);
+    Route::get('materials', ['as' => 'backend.materials.index', 'uses' => 'MaterialController@index']);
+    Route::get('materials/regist', ['as' => 'backend.materials.regist', 'uses' => 'MaterialController@getRegist']);
+    Route::post('materials/regist', ['as' => 'backend.materials.regist', 'uses' => 'MaterialController@postRegist']);
+    Route::get('materials/regist/cnf', ['as' => 'backend.materials.regist.cnf', 'uses' => 'MaterialController@getRegistCnf']);
+    Route::get('materials/regist/end', ['as' => 'backend.materials.regist.end', 'uses' => 'MaterialController@getRegistEnd']);
+    Route::get('materials/detail/{id}', ['as' => 'backend.materials.detail', 'uses' => 'MaterialController@getDetail']);
+    Route::get('materials/delete/cnf/{id}', ['as' => 'backend.materials.delete.cnf', 'uses' => 'MaterialController@getDeleteCnf']);
+    Route::get('materials/delete/end/{id}', ['as' => 'backend.materials.delete.end', 'uses' => 'MaterialController@getDeleteEnd']);
+    Route::get('materials/edit/{id}', ['as' => 'backend.materials.edit', 'uses' => 'MaterialController@getEdit']);
+    Route::post('materials/edit/{id}', ['as' => 'backend.materials.edit', 'uses' => 'MaterialController@postEdit']);
+    Route::get('materials/edit/end/{id}', ['as' => 'backend.materials.edit.end', 'uses' => 'MaterialController@getEditEnd']);
+    Route::get('materials/ajax/autocomplete-materials-name', ['as' => 'backend.materials.autocomplete.materials.name', 'uses' => 'MaterialController@AutoCompleteMaterialName']);
 
     /*
     |--------------------------------------------------------------------------
