@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Backend\BackendController;
-use App\Http\Models\Backend\PhotoModel;
+use App\Http\Models\PhotoModel;
 use Input;
 use Request;
 use Validator;
@@ -85,7 +85,6 @@ class PhotoController extends BackendController
     |-----------------------------------
     */
     public function saveRegist() {
-        $clsPhoto   = new PhotoModel();
         $data = array();
         if( Session::has('photo_regist') ){
             $data = Session::get('photo_regist');
@@ -151,7 +150,7 @@ class PhotoController extends BackendController
     */
     public function deleteComplete($id) {
         $clsPhoto   = new PhotoModel();
-        $data['photo'] = $clsPhoto->get_by_id($id);
+        $data['photo'] = $clsPhoto->trash_by_id($id);
         return view('backend.photos.delete_complete', $data);
     }
 
@@ -199,7 +198,6 @@ class PhotoController extends BackendController
     |-----------------------------------
     */
     public function changeCnf($id) {
-        $clsPhoto   = new PhotoModel();
         $data = array();
         $data['photo_id'] = $id;
         if( Session::has('photo_change') ){

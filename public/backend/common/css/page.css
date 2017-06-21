@@ -574,9 +574,10 @@ span.note_required {
 
 span.help-block {
   color: #E92324;
+  height: 6px;
 }
 
 i.warning {
-  color: #E92324;
+  color: #E90B0C;
   font-size: 13px;
 }

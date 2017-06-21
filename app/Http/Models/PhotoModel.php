@@ -1,4 +1,4 @@
-<?php namespace App\Http\Models\Backend;
+<?php namespace App\Http\Models;
 use DB;
 
 class PhotoModel
@@ -45,6 +45,11 @@ class PhotoModel
     }
 
     public function get_by_id($id)
+    {
+        return DB::table($this->table)->where('last_kind', '<>', DELETE)->where('photo_id', $id)->first();
+    }
+
+    public function trash_by_id($id)
     {
         return DB::table($this->table)->where('photo_id', $id)->first();
     }

@@ -10,8 +10,14 @@ return [
     */
     //Photo Model
     'error_photo_name_required'                     => '種類を入力してください。',
-    'error_price_required'                          => '価格を入力してください。',
-    'error_price_numeric'                           => '価格は数字でなければなりません。',
+    'error_photo_price_required'                    => '価格を入力してください。',
+    'error_photo_price_numeric'                     => '価格は数字でなければなりません。',
+
+    //Equipment Model
+    'error_equipment_category_required'             => '名目を選択してください。',
+    'error_equipment_name_required'                 => '備品名を入力してください。',
+    'error_equipment_price_required'                => '価格を入力してください。',
+    'error_equipment_price_numeric'                 => '価格は数字でなければなりません。',
 
     //material
     'error_material_name_required'                  => '装置を入力してください。',

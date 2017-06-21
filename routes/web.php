@@ -75,15 +75,19 @@ Route::group(['prefix' => 'manage', 'namespace' => 'Backend'], function () {
     Route::get('/fix/regist', ['as' => 'backend.fix.regist', 'uses' => 'FixController@regist']);
     Route::post('/fix/regist', ['as' => 'backend.fix.regist', 'uses' => 'FixController@postRegist']);
     Route::get('/fix/regist_confirm', ['as' => 'backend.fix.regist_cnf', 'uses' => 'FixController@registCnf']);
+    Route::get('/fix/regist_save', ['as' => 'backend.fix.regist_save', 'uses' => 'FixController@saveRegist']);
+    Route::get('/fix/save_del/{id}', ['as' => 'backend.fix.save_delete', 'uses' => 'FixController@postDelete']);
     Route::get('/fix/regist_complete', ['as' => 'backend.fix.regist_complete', 'uses' => 'FixController@registComplete']);
-    Route::get('/fix/detail', ['as' => 'backend.fix.detail', 'uses' => 'FixController@detail']);
-    Route::get('/fix/delete_confirm', ['as' => 'backend.fix.delete_cnf', 'uses' => 'FixController@deleteCnf']);
-    Route::get('/fix/delete_complete', ['as' => 'backend.fix.delete_complete', 'uses' => 'FixController@deleteComlete']);
-    Route::get('/fix/detail', ['as' => 'backend.fix.detail', 'uses' => 'FixController@detail']);
-    Route::get('/fix/change', ['as' => 'backend.fix.change', 'uses' => 'FixController@change']);
-    Route::post('/fix/change', ['as' => 'backend.fix.change', 'uses' => 'FixController@postChange']);
-    Route::get('/fix/change_confirm', ['as' => 'backend.fix.change_cnf', 'uses' => 'FixController@changeCnf']);
-    Route::get('/fix/change_complete', ['as' => 'backend.fix.change_complete', 'uses' => 'FixController@changeComplete']);
+    Route::get('/fix/detail/{id}', ['as' => 'backend.fix.detail', 'uses' => 'FixController@detail']);
+    Route::get('/fix/delete_confirm/{id}', ['as' => 'backend.fix.delete_cnf', 'uses' => 'FixController@deleteCnf']);
+    Route::get('/fix/delete_complete/{id}', ['as' => 'backend.fix.delete_complete', 'uses' => 'FixController@deleteComplete']);
+    Route::get('/fix/detail/{id}', ['as' => 'backend.fix.detail', 'uses' => 'FixController@detail']);
+    
+    Route::get('/fix/change/{id}', ['as' => 'backend.fix.change', 'uses' => 'FixController@change']);
+    Route::post('/fix/change/{id}', ['as' => 'backend.fix.change', 'uses' => 'FixController@postChange']);
+    Route::get('/fix/change/{id}/confirm', ['as' => 'backend.fix.change_cnf', 'uses' => 'FixController@changeCnf']);
+    Route::get('/fix/change/{id}/save', ['as' => 'backend.fix.change_save', 'uses' => 'FixController@saveChange']);
+    Route::get('/fix/change/{id}/complete', ['as' => 'backend.fix.change_complete', 'uses' => 'FixController@changeComplete']);
 
     /*
     |--------------------------------------------------------------------------
