@@ -14,7 +14,7 @@
                     </tr>
                     <tr>
                         <td class="col-title">価格</td>
-                        <td>{{ Session::get('dataInputs')['material_price'] }}</td>
+                        <td>￥{{ number_format(Session::get('dataInputs')['material_price']) }}</td>
                     </tr>
                     <tr>
                         <td class="col-title">区分</td>

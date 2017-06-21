@@ -51,19 +51,6 @@ class MaterialModel extends CommonModel
         return $dataInputs;
     }
 
-//    public function get_all_pagination($where = array())
-//    {
-//        $results = DB::table($this->table)->where('last_kind', '<>', DELETE);
-//
-//        if ( !empty($where['keyword']) ) {
-//            $results = $results->where('material_name', 'LIKE', '%' . $where['keyword'] . '%');
-//        }
-//
-//        $db = $results->orderBy($this->fieldOrderBy, $this->valueOrderBy)->simplePaginate(PAGINATION);
-//
-//        return $db;
-//    }
-
     public function get_all_limit($where = array(), $page)
     {
         $start = (($page - 1) * PAGINATION);
@@ -81,6 +68,13 @@ class MaterialModel extends CommonModel
             'count' => $count,
             'db' => $db
         ];
+    }
+
+    public function get_by_class($class = 1)
+    {
+        $results = DB::table($this->table)->where('last_kind', '<>', DELETE)->where('material_class'.$class, 1);
+        $db = $results->orderBy($this->fieldOrderBy, $this->valueOrderBy)->get();
+        return $db;
     }
 
     public function get_for_autocomplate($key = '')

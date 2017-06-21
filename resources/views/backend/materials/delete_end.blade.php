@@ -14,7 +14,7 @@
                     </tr>
                     <tr>
                         <td class="col-title">価格</td>
-                        <td>{{ $material->material_price }}</td>
+                        <td>￥{{ number_format($material->material_price) }}</td>
                     </tr>
                     <tr>
                         <td class="col-title">区分</td>
@@ -46,7 +46,7 @@
 
             <div class="row margin-bottom">
                 <div class="col-md-12 text-center">
-                    <input value="一覧へ戻る" onclick="location.href='{{ route('backend.materials.index') }}'" type="button" class="btn btn-sm btn-page">
+                    <input value="一覧へ戻る" onclick="location.href='{{ route('backend.materials.index', Session::get('whereParams')) }}'" type="button" class="btn btn-sm btn-page">
                 </div>
             </div>
         </div>

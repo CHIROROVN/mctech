@@ -42,7 +42,7 @@
                       @endif
                     @endif
                   </td>
-                  <td align="right">￥{{ $material->material_price }}</td>
+                  <td align="right">￥{{ number_format($material->material_price) }}</td>
                   <td align="center"><input value="詳細" onclick="location.href='{{ route('backend.materials.detail', $material->material_id) }}'" type="button" class="btn btn-sm btn-page"></td>
                 </tr>
               @endforeach

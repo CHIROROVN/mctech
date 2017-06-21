@@ -14,8 +14,8 @@
             </li>
             <li>
               <h4>オプション管理</h4>
-              <p>├<a href="manage_option_in.html">登録</a></p>
-              <p>└<a href="manage_option_search-list.html">検索・一覧</a></p>
+              <p>├<a href="{{ route('backend.options.regist') }}">登録</a></p>
+              <p>└<a href="{{ route('backend.options.index') }}">検索・一覧</a></p>
             </li>
             <li>
               <h4>外注医院管理</h4>

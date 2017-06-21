@@ -124,6 +124,20 @@ Route::group(['prefix' => 'manage', 'namespace' => 'Backend'], function () {
     Route::get('materials/edit/end/{id}', ['as' => 'backend.materials.edit.end', 'uses' => 'MaterialController@getEditEnd']);
     Route::get('materials/ajax/autocomplete-materials-name', ['as' => 'backend.materials.autocomplete.materials.name', 'uses' => 'MaterialController@AutoCompleteMaterialName']);
 
+    //option
+    Route::get('options', ['as' => 'backend.options.index', 'uses' => 'OptionController@index']);
+    Route::get('options/regist', ['as' => 'backend.options.regist', 'uses' => 'OptionController@getRegist']);
+    Route::post('options/regist', ['as' => 'backend.options.regist', 'uses' => 'OptionController@postRegist']);
+    Route::get('options/regist/cnf', ['as' => 'backend.options.regist.cnf', 'uses' => 'OptionController@getRegistCnf']);
+    Route::get('options/regist/end', ['as' => 'backend.options.regist.end', 'uses' => 'OptionController@getRegistEnd']);
+    Route::get('options/detail/{id}', ['as' => 'backend.options.detail', 'uses' => 'OptionController@getDetail']);
+    Route::get('options/delete/cnf/{id}', ['as' => 'backend.options.delete.cnf', 'uses' => 'OptionController@getDeleteCnf']);
+    Route::get('options/delete/end/{id}', ['as' => 'backend.options.delete.end', 'uses' => 'OptionController@getDeleteEnd']);
+    Route::get('options/edit/{id}', ['as' => 'backend.options.edit', 'uses' => 'OptionController@getEdit']);
+    Route::post('options/edit/{id}', ['as' => 'backend.options.edit', 'uses' => 'OptionController@postEdit']);
+    Route::get('options/edit/end/{id}', ['as' => 'backend.options.edit.end', 'uses' => 'OptionController@getEditEnd']);
+    Route::get('options/ajax/autocomplete-options-name', ['as' => 'backend.options.autocomplete.options.name', 'uses' => 'OptionController@AutoCompleteMaterialName']);
+
     /*
     |--------------------------------------------------------------------------
     | Backend manage page

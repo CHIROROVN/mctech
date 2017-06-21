@@ -20,4 +20,9 @@ return [
     'error_material_class_required'                 => '区分を入力してください。',
     'error_material_disposal_required'              => '処分予定日を入力してください。',
 
+    //option
+    'error_option_name_required'                  => 'オプション名を入力してください。',
+    'error_option_price_required'                 => '価格を入力してください。',
+    'error_option_price_numeric'                  => '数値形式を入力してください。',
+
 ];

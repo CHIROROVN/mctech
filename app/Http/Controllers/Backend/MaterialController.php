@@ -15,16 +15,17 @@ class MaterialController extends BackendController
         }
 
         $data = array();
-        $keyword                = Input::get('keyword', null);
-        $keyword_id             = Input::get('keyword_id', null);
+        $keyword                        = Input::get('keyword', null);
+        $keyword_id                     = Input::get('keyword_id', null);
         if ( empty($keyword) ) {
             $keyword_id = null;
         }
-        $data['keyword'] = $keyword;
-        $data['keyword_id'] = $keyword_id;
+        $data['keyword']                = $keyword;
+        $data['keyword_id']             = $keyword_id;
+        $data['page']                   = (isset($_GET['page'])) ? $_GET['page'] : 1;
+        Session::put('whereParams', $data);
 
         $clsMaterial                    = new MaterialModel();
-        $data['page']                   = (isset($_GET['page'])) ? $_GET['page'] : 1;
         $materials                      = $clsMaterial->get_all_limit($data, $data['page']);
         $data['materials']              = $materials['db'];
         $data['countAll']               = $materials['count'];
@@ -55,7 +56,7 @@ class MaterialController extends BackendController
         } elseif ( isset($inputs['material_class2']) ) {
             $inputs['material_class'] = $inputs['material_class2'];
         }
-        $validator      = Validator::make($inputs, $clsMaterial->Rules(), $clsMaterial->Messages());
+        $validator = Validator::make($inputs, $clsMaterial->Rules(), $clsMaterial->Messages());
         if ($validator->fails()) {
             return redirect()->route('backend.materials.regist')->withErrors($validator)->withInput();
         }
@@ -135,7 +136,7 @@ class MaterialController extends BackendController
         } elseif ( isset($inputs['material_class2']) ) {
             $inputs['material_class'] = $inputs['material_class2'];
         }
-        $validator      = Validator::make($inputs, $clsMaterial->Rules(), $clsMaterial->Messages());
+        $validator = Validator::make($inputs, $clsMaterial->Rules(), $clsMaterial->Messages());
         if ($validator->fails()) {
             return redirect()->route('backend.materials.edit', $id)->withErrors($validator)->withInput();
         }
@@ -170,9 +171,8 @@ class MaterialController extends BackendController
     public function AutoCompleteMaterialName()
     {
         $key            = Input::get('key', '');
-        $id_not_me      = Input::get('id_not_me', 0);
         $clsMaterial    = new MaterialModel();
-        $materialNames  = $clsMaterial->get_for_autocomplate($key, $id_not_me);
+        $materialNames  = $clsMaterial->get_for_autocomplate($key);
         $tmp = array();
         foreach ( $materialNames as $item ) {
             $tmp[] = (object)array(
