@@ -25,8 +25,8 @@
             </li>
             <li>
               <h4>ユーザー管理</h4>
-              <p>├<a href="manage_user_in.html">登録</a></p>
-              <p>└<a href="manage_user_search.html">検索・一覧</a></p>
+              <p>├<a href="{{ route('backend.users.regist') }}">登録</a></p>
+              <p>└<a href="{{ route('backend.users.index') }}">検索・一覧</a></p>
               <p>&nbsp;</p>
             </li>
             

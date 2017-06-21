@@ -176,7 +176,7 @@ class MaterialController extends BackendController
         $tmp = array();
         foreach ( $materialNames as $item ) {
             $tmp[] = (object)array(
-                'value'     => $item->material_name,
+                'value'     => $item->material_id,
                 'label'     => $item->material_name,
                 'desc'      => $item->material_name,
                 'tel'       => $item->material_name,

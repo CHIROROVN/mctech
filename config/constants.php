@@ -1,10 +1,31 @@
 <?php
-
     return [
-            'DEFINE' => array(
-                'INSERT'                => 0,
-                'UPDATE'                => 1,
-                'DELETE'                => 9,
-                'PAGINATION'            => 30,
-                    ),
+        'DEFINE' => array(
+            'INSERT'                => 0,
+            'UPDATE'                => 1,
+            'DELETE'                => 9,
+            'PAGINATION'            => 30,
+        ),
+        'COLORS' => array(
+            '#a50404',
+            '#108B96',
+            '#F39800',
+            '#D0A6B1',
+            '#8FC31F',
+            '#87C0CA',
+            '#C93759',
+            '#5A77AF',
+            '#EE87B4',
+            '#F6AE6A',
+            '#2f4f4f',
+            '#f5deb3',
+            '#d2b48c',
+            '#4169e1',
+            '#7fffd4',
+            '#dda0dd',
+            '#d2691e',
+            '#556b2f',
+            '#483d8b',
+            '#fa8072',
+        ),
     ];

@@ -13,7 +13,7 @@
                         <td>
                             @if ( isset(Session::get('dataInputs')['option_name']) )
                                 <input type="input" name="option_name" value="{{ Session::get('dataInputs')['option_name'] }}" class="form-control form-control--sm">
-                            @elseif ( old('material_name') )
+                            @elseif ( old('option_name') )
                                 <input type="input" name="option_name" value="{{ old('option_name') }}" class="form-control form-control--sm">
                             @else
                                 <input type="input" name="option_name" value="{{ $option->option_name }}" class="form-control form-control--sm">
@@ -28,7 +28,7 @@
                         <td>
                             @if ( isset(Session::get('dataInputs')['option_price']) )
                                 <input type="input" name="option_price" value="{{ Session::get('dataInputs')['option_price'] }}" class="form-control form-control--sm">
-                            @elseif ( old('material_name') )
+                            @elseif ( old('option_price') )
                                 <input type="input" name="option_price" value="{{ old('option_price') }}" class="form-control form-control--sm">
                             @else
                                 <input type="input" name="option_price" value="{{ $option->option_price }}" class="form-control form-control--sm">

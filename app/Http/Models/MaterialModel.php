@@ -56,8 +56,13 @@ class MaterialModel extends CommonModel
         $start = (($page - 1) * PAGINATION);
         $results = DB::table($this->table)->where('last_kind', '<>', DELETE);
 
-        if ( !empty($where['keyword']) ) {
+        if ( !empty($where['keyword']) && empty($where['keyword_id']) ) {
             $results = $results->where('material_name', 'LIKE', '%' . $where['keyword'] . '%');
+        }
+
+        // keyword_id
+        if ( !empty($where['keyword_id']) ) {
+            $results = $results->orWhere('material_id', $where['keyword_id']);
         }
 
         //count
@@ -79,7 +84,7 @@ class MaterialModel extends CommonModel
 
     public function get_for_autocomplate($key = '')
     {
-        $results = DB::table($this->table)->select('material_name')->where('last_kind', '<>', DELETE);
+        $results = DB::table($this->table)->select('material_id', 'material_name')->where('last_kind', '<>', DELETE);
 
         if ( !empty($key) ) {
             $results = $results->where('material_name', 'like', '%' . $key . '%');

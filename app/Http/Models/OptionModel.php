@@ -49,8 +49,13 @@ class OptionModel extends CommonModel
         $start = (($page - 1) * PAGINATION);
         $results = DB::table($this->table)->where('last_kind', '<>', DELETE);
 
-        if ( !empty($where['keyword']) ) {
+        if ( !empty($where['keyword']) && empty($where['keyword_id']) ) {
             $results = $results->where('option_name', 'LIKE', '%' . $where['keyword'] . '%');
+        }
+
+        // keyword_id
+        if ( !empty($where['keyword_id']) ) {
+            $results = $results->orWhere('option_id', $where['keyword_id']);
         }
 
         //count
@@ -65,7 +70,7 @@ class OptionModel extends CommonModel
 
     public function get_for_autocomplate($key = '')
     {
-        $results = DB::table($this->table)->select('option_name')->where('last_kind', '<>', DELETE);
+        $results = DB::table($this->table)->select('option_id', 'option_name')->where('last_kind', '<>', DELETE);
 
         if ( !empty($key) ) {
             $results = $results->where('option_name', 'like', '%' . $key . '%');

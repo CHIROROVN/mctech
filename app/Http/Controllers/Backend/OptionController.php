@@ -288,7 +288,7 @@ class OptionController extends BackendController
         $tmp = array();
         foreach ( $optionNames as $item ) {
             $tmp[] = (object)array(
-                'value'     => $item->option_name,
+                'value'     => $item->option_id,
                 'label'     => $item->option_name,
                 'desc'      => $item->option_name,
                 'tel'       => $item->option_name,

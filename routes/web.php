@@ -138,6 +138,20 @@ Route::group(['prefix' => 'manage', 'namespace' => 'Backend'], function () {
     Route::get('options/edit/end/{id}', ['as' => 'backend.options.edit.end', 'uses' => 'OptionController@getEditEnd']);
     Route::get('options/ajax/autocomplete-options-name', ['as' => 'backend.options.autocomplete.options.name', 'uses' => 'OptionController@AutoCompleteMaterialName']);
 
+    //user
+    Route::get('users', ['as' => 'backend.users.index', 'uses' => 'UserController@index']);
+    Route::get('users/regist', ['as' => 'backend.users.regist', 'uses' => 'UserController@getRegist']);
+    Route::post('users/regist', ['as' => 'backend.users.regist', 'uses' => 'UserController@postRegist']);
+    Route::get('users/regist/cnf', ['as' => 'backend.users.regist.cnf', 'uses' => 'UserController@getRegistCnf']);
+    Route::get('users/regist/end', ['as' => 'backend.users.regist.end', 'uses' => 'UserController@getRegistEnd']);
+    Route::get('users/detail/{id}', ['as' => 'backend.users.detail', 'uses' => 'UserController@getDetail']);
+    Route::get('users/delete/cnf/{id}', ['as' => 'backend.users.delete.cnf', 'uses' => 'UserController@getDeleteCnf']);
+    Route::get('users/delete/end/{id}', ['as' => 'backend.users.delete.end', 'uses' => 'UserController@getDeleteEnd']);
+    Route::get('users/edit/{id}', ['as' => 'backend.users.edit', 'uses' => 'UserController@getEdit']);
+    Route::post('users/edit/{id}', ['as' => 'backend.users.edit', 'uses' => 'UserController@postEdit']);
+    Route::get('users/edit/end/{id}', ['as' => 'backend.users.edit.end', 'uses' => 'UserController@getEditEnd']);
+    Route::get('users/ajax/autocomplete-users-name', ['as' => 'backend.users.autocomplete.users.name', 'uses' => 'UserController@AutoCompleteMaterialName']);
+
     /*
     |--------------------------------------------------------------------------
     | Backend manage page

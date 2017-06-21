@@ -28,7 +28,6 @@ class BackendController extends Controller
             $ipaddress = '';
 
         define('CLIENT_IP_ADRS', $ipaddress);
-
     }
 
 }
