@@ -5,7 +5,7 @@
     <section id="page">
       <div class="container">
         <div class="row content content--menu">
-          <div class="col-sm-7 col-md-7">
+          <div class="error-message">
             <h1 style="border:none; text-align: center;">404 Not Found.</h1>
           </div>
       </div>
