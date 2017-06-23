@@ -20,8 +20,8 @@ class PhotoModel
     {
         return array(
             'photo_name.required'               => trans('validation.error_photo_name_required'),
-            'photo_price.required'              => trans('validation.error_price_required'),
-            'photo_price.numeric'               => trans('validation.error_price_numeric'),
+            'photo_price.required'              => trans('validation.error_photo_price_required'),
+            'photo_price.numeric'               => trans('validation.error_photo_price_numeric'),
             
             );
     }
