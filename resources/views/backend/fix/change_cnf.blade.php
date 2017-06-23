@@ -24,7 +24,7 @@
         </div>
         <div class="row margin-bottom">
           <div class="col-md-12 text-center">
-            <input value="戻る" onclick="history.go(-1); return false;" type="button" class="btn btn-sm btn-page mar-left5"> <input value="変更する" onclick="location.href='{{route('backend.fix.change_save', [$equipment_id, 'equipment_cat'=>$equipment_cat])}}'" type="button" class="btn btn-sm btn-page mar-left5">
+            <input value="戻る" onclick="location.href='{{route('backend.fix.change', [$equipment_id, 'equipment_cat'=>$equipment_cat])}}'" type="button" class="btn btn-sm btn-page mar-left5"> <input value="変更する" onclick="location.href='{{route('backend.fix.change_save', [$equipment_id, 'equipment_cat'=>$equipment_cat])}}'" type="button" class="btn btn-sm btn-page mar-left5">
           </div>
         </div>
       </div>

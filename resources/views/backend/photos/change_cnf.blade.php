@@ -20,7 +20,7 @@
         </div>
         <div class="row margin-bottom">
           <div class="col-md-12 text-center">
-            <input value="戻る" onclick="location.href='{{route('backend.photos.index')}}'" type="button" class="btn btn-sm btn-page">　<input value="変更する" onclick="location.href='{{route('backend.photos.change_save', $photo_id)}}'" type="button" class="btn btn-sm btn-page">
+            <input value="戻る" onclick="location.href='{{route('backend.photos.change', $photo_id)}}'" type="button" class="btn btn-sm btn-page">　<input value="変更する" onclick="location.href='{{route('backend.photos.change_save', $photo_id)}}'" type="button" class="btn btn-sm btn-page">
           </div>
         </div>
       </div>

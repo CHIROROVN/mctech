@@ -184,6 +184,10 @@ class FixController extends BackendController
         }
         $clsEquipment  = new EquipmentModel();
         $data['equipment'] = $clsEquipment->get_by_id($id);
+        $data['equipment_id'] = $id;
+        if( Session::has('equipment_change') ){
+            $data['equipment'] = (object) Session::get('equipment_change');
+        }
         return view('backend.fix.change', $data);
     }
 

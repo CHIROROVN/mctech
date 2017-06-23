@@ -20,7 +20,8 @@
         </div>
         <div class="row margin-bottom">
           <div class="col-md-12 text-center">
-            <input value="一覧へ戻る" onclick="location.href='{{route('backend.photos.index')}}'" type="button" class="btn btn-sm btn-page">　          </div>
+            <input value="一覧へ戻る" onclick="location.href='{{route('backend.photos.index')}}'" type="button" class="btn btn-sm btn-page">
+            </div>
         </div>
       </div>
     </section>

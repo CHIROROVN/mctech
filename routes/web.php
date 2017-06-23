@@ -39,7 +39,7 @@ Route::group(['prefix' => 'manage', 'namespace' => 'Backend'], function () {
     Route::get('/photo/regist_complete', ['as' => 'backend.photos.regist_complete', 'uses' => 'PhotoController@registComplete']);
     Route::get('/photo/delete/{id}', ['as' => 'backend.photos.delete_cnf', 'uses' => 'PhotoController@deleteCnf']);
     Route::get('/photo/save_del/{id}', ['as' => 'backend.photos.save_delete', 'uses' => 'PhotoController@postDelete']);
-    Route::get('/photo/delete/{id}/complete', ['as' => 'backend.photos.delete_complete', 'uses' => 'PhotoController@deleteComplete']);    
+    Route::get('/photo/delete/{id}/complete', ['as' => 'backend.photos.delete_complete', 'uses' => 'PhotoController@deleteComplete']);
     Route::get('/photo/detail/{id}', ['as' => 'backend.photos.detail', 'uses' => 'PhotoController@detail']);    
     Route::get('/photo/change/{id}', ['as' => 'backend.photos.change', 'uses' => 'PhotoController@change']);   
     Route::post('/photo/change/{id}', ['as' => 'backend.photos.change', 'uses' => 'PhotoController@postChange']);
@@ -56,15 +56,19 @@ Route::group(['prefix' => 'manage', 'namespace' => 'Backend'], function () {
     Route::get('/lesson/regist', ['as' => 'backend.lessons.regist', 'uses' => 'LessonController@regist']);
     Route::post('/lesson/regist', ['as' => 'backend.lessons.regist', 'uses' => 'LessonController@postRegist']);
     Route::get('/lesson/regist_confirm', ['as' => 'backend.lessons.regist_cnf', 'uses' => 'LessonController@registCnf']);
+    Route::get('/lesson/regist_save', ['as' => 'backend.lessons.regist_save', 'uses' => 'LessonController@saveRegist']);
     Route::get('/lesson/regist_complete', ['as' => 'backend.lessons.regist_complete', 'uses' => 'LessonController@registComplete']);
-    Route::get('/lesson/detail', ['as' => 'backend.lessons.detail', 'uses' => 'LessonController@detail']);
-    Route::get('/lesson/delete_confirm', ['as' => 'backend.lessons.delete_cnf', 'uses' => 'LessonController@deleteCnf']);
-    Route::get('/lesson/delete_complete', ['as' => 'backend.lessons.delete_complete', 'uses' => 'LessonController@deleteComlete']);
-    Route::get('/lesson/detail', ['as' => 'backend.lessons.detail', 'uses' => 'LessonController@detail']);
-    Route::get('/lesson/change', ['as' => 'backend.lessons.change', 'uses' => 'LessonController@change']);
-    Route::post('/lesson/change', ['as' => 'backend.lessons.change', 'uses' => 'LessonController@postChange']);
-    Route::get('/lesson/change_confirm', ['as' => 'backend.lessons.change_cnf', 'uses' => 'LessonController@changeCnf']);
-    Route::get('/lesson/change_complete', ['as' => 'backend.lessons.change_complete', 'uses' => 'LessonController@changeComplete']);
+    Route::get('/lesson/delete/{id}', ['as' => 'backend.lessons.delete_cnf', 'uses' => 'LessonController@deleteCnf']);
+    Route::get('/lesson/save_del/{id}', ['as' => 'backend.lessons.save_delete', 'uses' => 'LessonController@postDelete']);
+    Route::get('/lesson/delete/{id}/complete', ['as' => 'backend.lessons.delete_complete', 'uses' => 'LessonController@deleteComplete']);
+
+    Route::get('/lesson/detail/{id}', ['as' => 'backend.lessons.detail', 'uses' => 'LessonController@detail']);
+    Route::get('/lesson/save_del/{id}', ['as' => 'backend.lessons.save_delete', 'uses' => 'LessonController@postDelete']);
+    Route::get('/lesson/change/{id}', ['as' => 'backend.lessons.change', 'uses' => 'LessonController@change']);   
+    Route::post('/lesson/change/{id}', ['as' => 'backend.lessons.change', 'uses' => 'LessonController@postChange']);
+    Route::get('/lesson/change/{id}/confirm', ['as' => 'backend.lessons.change_cnf', 'uses' => 'LessonController@changeCnf']);
+    Route::get('/lesson/change/{id}/save', ['as' => 'backend.lessons.change_save', 'uses' => 'LessonController@saveChange']);
+    Route::get('/lesson/change/{id}/complete', ['as' => 'backend.lessons.change_complete', 'uses' => 'LessonController@changeComplete']);
 
     /*
     |--------------------------------------------------------------------------

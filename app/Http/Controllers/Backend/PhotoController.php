@@ -85,6 +85,7 @@ class PhotoController extends BackendController
     |-----------------------------------
     */
     public function saveRegist() {
+        $clsPhoto = new PhotoModel();
         $data = array();
         if( Session::has('photo_regist') ){
             $data = Session::get('photo_regist');
@@ -160,11 +161,12 @@ class PhotoController extends BackendController
     |-----------------------------------
     */
     public function change($id) {
-        if( Session::has('photo_change') ){
-            Session::get('photo_change');
-        }
         $clsPhoto   = new PhotoModel();
         $data['photo'] = $clsPhoto->get_by_id($id);
+        $data['photo_id'] = $id;
+        if( Session::has('photo_change') ){
+            $data['photo'] = (object) Session::get('photo_change');
+        }
         return view('backend.photos.change', $data);
     }
 

@@ -4,7 +4,7 @@
     <!--PAGE CONTENT -->
     <section id="page">
       <div class="container">
-      {!! Form::open( ['id' => 'frmPhotoChange', 'class' => 'form-horizontal','method' => 'post', 'route' =>['backend.photos.change', $photo->photo_id], 'enctype'=>'multipart/form-data', 'accept-charset'=>'utf-8']) !!}
+      {!! Form::open( ['id' => 'frmPhotoChange', 'class' => 'form-horizontal','method' => 'post', 'route' =>['backend.photos.change', $photo_id], 'enctype'=>'multipart/form-data', 'accept-charset'=>'utf-8']) !!}
         <div class="row content-page">
           <h3>写真管理　＞　変更</h3>
           <table width="80%" class="table table-bordered treatment2-list">
@@ -38,7 +38,7 @@
         </div>
         <div class="row margin-bottom">
           <div class="col-md-12 text-center">
-            <input value="戻る" onclick="location.href='{{route('backend.photos.detail',$photo->photo_id)}}'" type="button" class="btn btn-sm btn-page mar-left5"> <input value="確認"  type="submit" class="btn btn-sm btn-page mar-left5">
+            <input value="戻る" onclick="location.href='{{route('backend.photos.detail',$photo_id)}}'" type="button" class="btn btn-sm btn-page mar-left5"> <input value="確認"  type="submit" class="btn btn-sm btn-page mar-left5">
           </div>
         </div>
         {!! Form::close() !!}
