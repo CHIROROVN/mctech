@@ -20,6 +20,7 @@ class HospitalModel extends CommonModel
             'pref_code'                                 => 'required',
             'hospital_address'                          => 'required',
             'hospital_tel'                              => 'required',
+            'hospital_email'                            => 'email',
         );
     }
 
@@ -33,6 +34,7 @@ class HospitalModel extends CommonModel
             'pref_code.required'                        => trans('validation.error_pref_code_required'),
             'hospital_address.required'                 => trans('validation.error_hospital_address_required'),
             'hospital_tel.required'                     => trans('validation.error_hospital_tel_required'),
+            'hospital_email.email'                      => trans('validation.error_hospital_email_email'),
         );
     }
 

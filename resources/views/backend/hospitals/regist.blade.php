@@ -131,6 +131,10 @@
                             @else
                                 <input type="input" name="hospital_email" value="{{ old('hospital_email') }}" class="form-control form-control--sm">
                             @endif
+
+                            @if ($errors->first('hospital_email'))
+                                <span class="error-input">※ {!! $errors->first('hospital_email') !!}</span>
+                            @endif
                         </td>
                     </tr>
                     <tr>
@@ -199,7 +203,7 @@
                             @if ( isset(Session::get('dataInputs')['hospital_return']) && Session::get('dataInputs')['hospital_return'] != 1 )
                                 <input type="radio" name="hospital_return" value="0" checked> 不要
                             @else
-                                <input type="radio" name="hospital_return" value="0" @if(old('hospital_return') != 1) checked @endif> 不要
+                                <input type="radio" name="hospital_return" value="0" @if(old('hospital_return') != 1 && old('hospital_return') == 0) checked @endif> 不要
                             @endif
                         </td>
                     </tr><tr>
@@ -214,7 +218,7 @@
                             @if ( isset(Session::get('dataInputs')['hospital_dspl_flag']) && Session::get('dataInputs')['hospital_dspl_flag'] != 1 )
                                 <input type="radio" name="hospital_dspl_flag" value="0" checked> しない
                             @else
-                                <input type="radio" name="hospital_dspl_flag" value="0" @if(old('hospital_dspl_flag') != 1) checked @endif> しない
+                                <input type="radio" name="hospital_dspl_flag" value="0" @if(old('hospital_dspl_flag') != 1 && old('hospital_dspl_flag') == 0) checked @endif> しない
                             @endif
                         </td>
                     </tr>

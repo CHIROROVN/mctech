@@ -15,11 +15,13 @@
                             <input type="hidden" name="keyword_id" id="keyword_id-id" value="{{ $keyword_id }}">
 
                             オーソネットワーク<select name="s_material_class1" class="form-control form-control--auto mar-left10">
+                                <option value="">全て</option>
                                 @foreach( $materialClass1 as $item )
                                     <option value="{{ $item->material_id }}" @if($s_material_class1 == $item->material_id) selected @endif>{{ $item->material_name }}</option>
                                 @endforeach
                             </select>　　
                             外注<select name="s_material_class2" class="form-control form-control--small mar-left10">
+                                <option value="">全て</option>
                                 @foreach( $materialClass2 as $item )
                                     <option value="{{ $item->material_id }}" @if($s_material_class2 == $item->material_id) selected @endif>{{ $item->material_name }}</option>
                                 @endforeach

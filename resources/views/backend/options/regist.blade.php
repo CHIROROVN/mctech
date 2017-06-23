@@ -46,7 +46,11 @@
                                     @foreach ( $materials as $material )
                                     <div class="col-sm-6 col-md-6">
                                         <div class="radio">
-                                            <label><input class="material-id" name="material_id[]" value="{{ $material->material_id }}" type="checkbox"> {{ $material->material_name }}</label>
+                                            @if ( !empty(Session::get('dataInputs')['material_id']) && count(Session::get('dataInputs')['material_id']) > 0 )
+                                            <label><input class="material-id" name="material_id[]" value="{{ $material->material_id }}" type="checkbox" @if(in_array($material->material_id, Session::get('dataInputs')['material_id'])) checked @endif> {{ $material->material_name }}</label>
+                                            @else
+                                            <label><input class="material-id" name="material_id[]" value="{{ $material->material_id }}" type="checkbox" > {{ $material->material_name }}</label>
+                                            @endif
                                         </div>
                                     </div>
                                     @endforeach
