@@ -19,8 +19,8 @@
             </li>
             <li>
               <h4>外注医院管理</h4>
-              <p>├<a href="manage_hospital_in.html">登録</a></p>
-              <p>└<a href="manage_hospital_in_serch.html">検索・一覧</a></p>
+              <p>├<a href="{{ route('backend.hospitals.regist') }}">登録</a></p>
+              <p>└<a href="{{ route('backend.hospitals.index') }}">検索・一覧</a></p>
               <p>&nbsp;</p>
             </li>
             <li>

@@ -156,6 +156,20 @@ Route::group(['prefix' => 'manage', 'namespace' => 'Backend'], function () {
     Route::get('users/edit/end/{id}', ['as' => 'backend.users.edit.end', 'uses' => 'UserController@getEditEnd']);
     Route::get('users/ajax/autocomplete-users-name', ['as' => 'backend.users.autocomplete.users.name', 'uses' => 'UserController@AutoCompleteMaterialName']);
 
+    //hospital
+    Route::get('hospitals', ['as' => 'backend.hospitals.index', 'uses' => 'HospitalController@index']);
+    Route::get('hospitals/regist', ['as' => 'backend.hospitals.regist', 'uses' => 'HospitalController@getRegist']);
+    Route::post('hospitals/regist', ['as' => 'backend.hospitals.regist', 'uses' => 'HospitalController@postRegist']);
+    Route::get('hospitals/regist/cnf', ['as' => 'backend.hospitals.regist.cnf', 'uses' => 'HospitalController@getRegistCnf']);
+    Route::get('hospitals/regist/end', ['as' => 'backend.hospitals.regist.end', 'uses' => 'HospitalController@getRegistEnd']);
+    Route::get('hospitals/detail/{id}', ['as' => 'backend.hospitals.detail', 'uses' => 'HospitalController@getDetail']);
+    Route::get('hospitals/delete/cnf/{id}', ['as' => 'backend.hospitals.delete.cnf', 'uses' => 'HospitalController@getDeleteCnf']);
+    Route::get('hospitals/delete/end/{id}', ['as' => 'backend.hospitals.delete.end', 'uses' => 'HospitalController@getDeleteEnd']);
+    Route::get('hospitals/edit/{id}', ['as' => 'backend.hospitals.edit', 'uses' => 'HospitalController@getEdit']);
+    Route::post('hospitals/edit/{id}', ['as' => 'backend.hospitals.edit', 'uses' => 'HospitalController@postEdit']);
+    Route::get('hospitals/edit/end/{id}', ['as' => 'backend.hospitals.edit.end', 'uses' => 'HospitalController@getEditEnd']);
+    Route::get('hospitals/ajax/autocomplete-hospitals-name', ['as' => 'backend.hospitals.autocomplete.hospitals.name', 'uses' => 'HospitalController@AutoCompleteMaterialName']);
+
     /*
     |--------------------------------------------------------------------------
     | Backend manage page

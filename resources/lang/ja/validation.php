@@ -46,5 +46,14 @@ return [
     'error_u_shift_required'                        => 'シフト利用を入力してください。',
     'error_u_acronym_required'                      => 'シフトでのアイコンの色を入力してください。',
 
+    //hospital
+    'error_hospital_display_required'               => '表示名を入力してください。',
+    'error_hospital_name_required'                  => '正式名称を入力してください。',
+    'error_hospital_doctor_required'                => '院長名を入力してください。',
+    'error_hospital_zip_required'                   => '郵便番号を入力してください。',
+    'error_pref_code_required'                      => '都道府県を入力してください。',
+    'error_hospital_address_required'               => '住所を入力してください。',
+    'error_hospital_tel_required'                   => '電話番号を入力してください。',
+
 
 ];
