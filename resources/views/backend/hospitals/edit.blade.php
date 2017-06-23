@@ -149,6 +149,10 @@
                             @else
                                 <input type="input" name="hospital_email" value="{{ $hospital->hospital_email }}" class="form-control form-control--sm">
                             @endif
+
+                            @if ($errors->first('hospital_email'))
+                                <span class="error-input">※ {!! $errors->first('hospital_email') !!}</span>
+                            @endif
                         </td>
                     </tr>
                     <tr>

@@ -105,6 +105,7 @@ class OptionController extends BackendController
             }
         }
         $inputs['materialName'] = $tmp;
+        //echo '<pre>';print_r($inputs);die;
         Session::put('dataInputs', $inputs);
 
         return redirect()->route('backend.options.regist.cnf');

@@ -57,12 +57,12 @@ class MaterialModel extends CommonModel
         $results = DB::table($this->table)->where('last_kind', '<>', DELETE);
 
         if ( !empty($where['keyword']) && empty($where['keyword_id']) ) {
-            $results = $results->where('material_name', 'LIKE', '%' . $where['keyword'] . '%');
+            $results = $results->orWhere('material_name', 'LIKE', '%' . $where['keyword'] . '%');
         }
 
         // keyword_id
         if ( !empty($where['keyword_id']) ) {
-            $results = $results->orWhere('material_id', $where['keyword_id']);
+            $results = $results->where('material_id', $where['keyword_id']);
         }
 
         //count

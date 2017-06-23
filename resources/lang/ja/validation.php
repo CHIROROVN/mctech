@@ -59,6 +59,6 @@ return [
     'error_pref_code_required'                      => '都道府県を入力してください。',
     'error_hospital_address_required'               => '住所を入力してください。',
     'error_hospital_tel_required'                   => '電話番号を入力してください。',
-
+    'error_hospital_email_email'                    => '不正な形式の電子メール',
 
 ];

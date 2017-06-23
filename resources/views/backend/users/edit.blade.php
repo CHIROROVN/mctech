@@ -111,11 +111,11 @@
                                     <input name="u_power" value="10" type="radio" @if($user->u_power == 10) checked @endif> 管理者&nbsp; &nbsp;
                                 @endif
                                 @if ( isset(Session::get('dataInputs')['u_power']) && Session::get('dataInputs')['u_power'] == 20 )
-                                    <input name="u_power" value="20" type="radio" checked> 技工士&nbsp; &nbsp;
+                                    <input id="u_power_20" name="u_power" value="20" type="radio" checked> 技工士&nbsp; &nbsp;
                                 @elseif ( old('u_power') && old('u_power') == 20 )
-                                    <input name="u_power" value="20" type="radio" checked> 技工士&nbsp; &nbsp;
+                                    <input id="u_power_20" name="u_power" value="20" type="radio" checked> 技工士&nbsp; &nbsp;
                                 @else
-                                    <input name="u_power" value="20" type="radio" @if($user->u_power == 20) checked @endif> 技工士&nbsp; &nbsp;
+                                    <input id="u_power_20" name="u_power" value="20" type="radio" @if($user->u_power == 20) checked @endif> 技工士&nbsp; &nbsp;
                                 @endif
                                 @if ( isset(Session::get('dataInputs')['u_power']) && Session::get('dataInputs')['u_power'] == 30 )
                                     <input name="u_power" value="30" type="radio" checked> 事務&nbsp;&nbsp;
@@ -154,11 +154,11 @@
                         <td class="col-title">シフト利用</td>
                         <td>
                             @if ( isset(Session::get('dataInputs')['u_shift']) && Session::get('dataInputs')['u_shift'] == 1 )
-                                <input type="radio" name="u_shift" value="1" checked>する&nbsp;
+                                <input type="radio" id="u_shift_1" name="u_shift" value="1" checked>する&nbsp;
                             @elseif ( old('u_shift') == 1 )
-                                <input type="radio" name="u_shift" value="1"checked>する&nbsp;
+                                <input type="radio" id="u_shift_1" name="u_shift" value="1"checked>する&nbsp;
                             @else
-                                <input type="radio" name="u_shift" value="1" @if($user->u_shift == 1) checked @endif>する&nbsp;
+                                <input type="radio" id="u_shift_1" name="u_shift" value="1" @if($user->u_shift == 1) checked @endif>する&nbsp;
                             @endif
                             @if ( isset(Session::get('dataInputs')['u_acronym']) )
                                 <input type="input" name="u_acronym" value="{{ Session::get('dataInputs')['u_acronym'] }}" class="form-control form-control--default" style="width:50px;">&nbsp; &nbsp;
@@ -243,7 +243,9 @@
 
     <script>
         $(document).ready(function() {
-
+            $("#u_power_20").click(function(){
+                $('#u_shift_1').prop('checked', true);
+            });
         });
     </script>
 @endsection  

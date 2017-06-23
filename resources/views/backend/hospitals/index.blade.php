@@ -29,12 +29,12 @@
                                 @foreach ( $areas as $area )
                                     @if ( !empty($area->prefs) && count($area->prefs) > 0 )
                                         <div class="col-md-12 mar-bottom">
-                                            <input name="" value="{{ $area->area_name }}" type="button" class="btn btn-sm btn-page">&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <input name="" value="{{ $area->area_name }}" type="button" class="btn btn-sm btn-page">
                                             @foreach ( $area->prefs as $pref )
                                                 @if ( !empty($s_pref_id) && count($s_pref_id) > 0 )
-                                                　  <input type="checkbox" name="s_pref_id[]" value="{{ $pref->pref_id }}" @if(in_array($pref->pref_id, $s_pref_id)) checked @endif>{{ $pref->pref_name }}
+                                            　  <input 111 type="checkbox" name="s_pref_id[]" value="{{ $pref->pref_id }}" @if(in_array($pref->pref_id, $s_pref_id)) checked @endif>{{ $pref->pref_name }}
                                                 @else
-                                                    <input type="checkbox" name="s_pref_id[]" value="{{ $pref->pref_id }}">{{ $pref->pref_name }}
+                                                <input style="margin-left: 20px;" 222 type="checkbox" name="s_pref_id[]" value="{{ $pref->pref_id }}">{{ $pref->pref_name }}
                                                 @endif
                                             @endforeach
                                         </div>
