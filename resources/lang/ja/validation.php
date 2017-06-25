@@ -14,9 +14,9 @@ return [
     'error_photo_price_numeric'                     => '価格は数字でなければなりません。',
 
     //Lesson Model
-    'error_lecture_name_required'                     => '種類を入力してください。',
-    'error_lecture_price_required'                    => '価格を入力してください。',
-    'error_lecture_price_numeric'                     => '価格は数字でなければなりません。',
+    'error_lecture_name_required'                   => '種類を入力してください。',
+    'error_lecture_price_required'                  => '価格を入力してください。',
+    'error_lecture_price_numeric'                   => '価格は数字でなければなりません。',
 
     //Equipment Model
     'error_equipment_category_required'             => '名目を選択してください。',
@@ -60,5 +60,8 @@ return [
     'error_hospital_address_required'               => '住所を入力してください。',
     'error_hospital_tel_required'                   => '電話番号を入力してください。',
     'error_hospital_email_email'                    => '不正な形式の電子メール',
+
+    //ShiftKind Model
+    'error_kshift_name_required'                    => '種別名を入力してください。',
 
 ];

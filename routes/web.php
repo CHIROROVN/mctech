@@ -98,13 +98,21 @@ Route::group(['prefix' => 'manage', 'namespace' => 'Backend'], function () {
     | Backend shift page
     |--------------------------------------------------------------------------
     */
+    
+    Route::get('/shifts/shubetsu', ['as' => 'backend.shifts.shubetsu.index', 'uses' => 'ShiftKindController@shubetsu']);
+    
+    Route::get('/shifts/shubetsu/regist', ['as' => 'backend.shifts.shubetsu.regist', 'uses' => 'ShiftKindController@shubetsuRegist']);
+    Route::post('/shifts/shubetsu/regist', ['as' => 'backend.shifts.shubetsu.regist', 'uses' => 'ShiftKindController@postShubetsuRegist']);
+    Route::get('/shifts/shubetsu/change', ['as' => 'backend.shifts.shubetsu.change', 'uses' => 'ShiftKindController@shubetsuChange']);
+    Route::post('/shifts/shubetsu/change', ['as' => 'backend.shifts.shubetsu.change', 'uses' => 'ShiftKindController@postShubetsuChange']);
+    Route::get('/shifts/shubetsu/delete_confirm', ['as' => 'backend.shifts.shubetsu.delete_cnf', 'uses' => 'ShiftKindController@shubetsuDeleteCnf']);
+
+
+
+
     Route::get('/shifts', ['as' => 'backend.shifts.index', 'uses' => 'ShiftsController@index']);
     Route::post('/shifts', ['as' => 'backend.shifts.regist', 'uses' => 'ShiftController@postIndex']);
-    Route::get('/shifts/shubetsu', ['as' => 'backend.shifts.shubetsu.index', 'uses' => 'ShiftController@shubetsu']);
-    Route::get('/shifts/shubetsu/regist', ['as' => 'backend.shifts.shubetsu.regist', 'uses' => 'ShiftController@shubetsuRegist']);
-    Route::post('/shifts/shubetsu/regist', ['as' => 'backend.shifts.shubetsu.regist', 'uses' => 'ShiftController@postShubetsuRegist']);
-    Route::get('/shifts/shubetsu/change', ['as' => 'backend.shifts.shubetsu.change', 'uses' => 'ShiftController@shubetsuChange']);
-    Route::post('/shifts/shubetsu/change', ['as' => 'backend.shifts.shubetsu.change', 'uses' => 'ShiftController@postShubetsuChange']);
+    
 
     Route::get('/shifts/syukkin', ['as' => 'backend.shifts.syukkin.index', 'uses' => 'ShiftController@syukkin']);
     Route::get('/shifts/syukkin/regist', ['as' => 'backend.shifts.syukkin.regist', 'uses' => 'ShiftController@syukkinRegist']);
