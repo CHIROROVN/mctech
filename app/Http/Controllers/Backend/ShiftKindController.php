@@ -25,7 +25,6 @@ class ShiftKindController extends BackendController
     |-----------------------------------
     */
     public function shubetsuRegist() {
-        $data = array();
         if(Session::has('kshift_regist')){
             $data['shubetsu'] = (Object) Session::get('kshift_regist');
         }
@@ -40,6 +39,7 @@ class ShiftKindController extends BackendController
     */
     public function postShubetsuRegist() {
         $clsShiftKind = new ShiftKindModel();
+        $max_order = $clsShiftKind->get_max_order();
         $validator  = Validator::make(Input::all(), $clsShiftKind->Rules(), $clsShiftKind->Messages());
 
         if ($validator->fails()) {
@@ -48,6 +48,7 @@ class ShiftKindController extends BackendController
 
         $data['kshift_name']                    = Input::get('kshift_name');
         $data['kshift_color']                   = Input::get('kshift_color');
+        $data['kshift_sort']                    = $max_order;
         $data['last_date']                      = date('Y-m-d H:i:s');
         $data['last_kind']                      = INSERT;
         $data['last_ipadrs']                    = CLIENT_IP_ADRS;

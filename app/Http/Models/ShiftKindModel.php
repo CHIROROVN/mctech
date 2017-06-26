@@ -24,7 +24,7 @@ class ShiftKindModel
 
     //get all Working list
     public function getAllKshift(){
-            return DB::table($this->table)->where('last_kind', '<>', DELETE)->orderBy('last_date', '=', 'desc')->get();
+            return DB::table($this->table)->where('last_kind', '<>', DELETE)->orderBy('kshift_sort', 'asc')->orderBy('last_date', '=', 'desc')->get();
         }
 
     public function insert($data)
@@ -35,6 +35,11 @@ class ShiftKindModel
     public function get_by_id($id)
     {
         return DB::table($this->table)->where('last_kind', '<>', DELETE)->where('kshift_id', $id)->first();
+    }
+
+    public function get_max_order()
+    {
+        return DB::table($this->table)->where('last_kind', '<>', DELETE)->max('kshift_sort');
     }
 
     public function trash_by_id($id)
