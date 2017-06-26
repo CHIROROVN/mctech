@@ -25,6 +25,7 @@ class ShiftKindController extends BackendController
     |-----------------------------------
     */
     public function shubetsuRegist() {
+        $data = array();
         if(Session::has('kshift_regist')){
             $data['shubetsu'] = (Object) Session::get('kshift_regist');
         }
@@ -84,6 +85,7 @@ class ShiftKindController extends BackendController
         if(Session::has('kshift_regist')){
             $data = Session::get('kshift_regist');
             if ( $clsShiftKind->insert($data) ) {
+                Session::forget('kshift_regist');
                 return redirect()->route('backend.shifts.shubetsu.index');
             } else {
                 Session::flash('danger', trans('common.msg_shubetsu_add_danger'));
@@ -176,6 +178,7 @@ class ShiftKindController extends BackendController
         if(Session::has('kshift_change')){
             $data = Session::get('kshift_change');
             if ( $clsShiftKind->update($id, $data) ) {
+                Session::forget('kshift_change');
                 return redirect()->route('backend.shifts.shubetsu.index');
             } else {
                 Session::flash('danger', trans('common.msg_shubetsu_add_danger'));
