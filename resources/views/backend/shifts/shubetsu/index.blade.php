@@ -20,10 +20,10 @@
             <tr>
               <td align="center" style="color: {{$kshift->kshift_color}};">{{$kshift->kshift_name}}</td>
               <td align="center">
-                <input value="変更" onclick="location.href='{{route('backend.shifts.shubetsu.change')}}'" type="button" class="btn btn-sm btn-page">
+                <input value="変更" onclick="location.href='{{route('backend.shifts.shubetsu.change', $kshift->kshift_id)}}'" type="button" class="btn btn-sm btn-page">
               </td>
               <td align="center">
-                <input value="削除" onclick="location.href='{{route('backend.shifts.shubetsu.delete_cnf')}}'" type="button" class="btn btn-sm btn-page">
+                <input value="削除" onclick="location.href='{{route('backend.shifts.shubetsu.delete_cnf', $kshift->kshift_id)}}'" type="button" class="btn btn-sm btn-page">
               </td>
             </tr>
             @endforeach
@@ -35,7 +35,7 @@
         </div>
         <div class="row margin-bottom">
           <div class="col-md-12 text-center">
-            <input value="戻る" onclick="location.href='manage.html'" type="button" class="btn btn-sm btn-page">
+            <input value="戻る" onclick="location.href='{{route('backend.manage.index')}}'" type="button" class="btn btn-sm btn-page">
           </div>
         </div>
       </div>
