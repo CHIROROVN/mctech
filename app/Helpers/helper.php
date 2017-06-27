@@ -38,15 +38,29 @@ if (!function_exists('DayJp')) {
     function splitDate($date=null, $param=null){
         if(!empty($date)){
             $dt = explode('-', $date);
-            if($param == 'Y'){
+            if($param == 'y'){
                 return (int) $dt[0];
             }elseif($param == 'm'){
                 return (int) $dt[1];
+            }elseif($param == '-'){
+                return $dt[0].'-'.$dt[1];
             }else{
                 return $dt[0].'年'.$dt[1].'月';
             }
         }else{
             return '';
         }
+    }
+
+    function DayOfMonth($m, $year){
+        return cal_days_in_month(CAL_GREGORIAN, $m, $year);
+    }
+
+    function c2Digit($str){
+        return sprintf("%02d", $str);
+    }
+
+    function working_by_date($date){
+        return App\Http\Controllers\Backend\ShiftHolidayController::working_by_date($date);
     }
 }

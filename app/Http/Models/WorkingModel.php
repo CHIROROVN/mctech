@@ -31,6 +31,10 @@ class WorkingModel
         return DB::table($this->table)->where('last_kind', '<>', DELETE)->orderBy('last_date', '=', 'desc')->pluck('working_name', 'working_id');
     }
 
+    public function getWorking(){
+        return DB::table($this->table)->select('working_id', 'working_name', 'working_color')->where('last_kind', '<>', DELETE)->orderBy('last_date', '=', 'desc')->get();
+    }
+
     public function insert($data)
     {
         return DB::table($this->table)->insert($data);

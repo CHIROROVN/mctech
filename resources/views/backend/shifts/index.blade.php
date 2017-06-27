@@ -7,7 +7,7 @@
     <div class="row content-page">
       <h3>事務管理　＞　技工シフト登録</h3>
       <p><input type="button" class="btn btn-sm btn-header" name="button" onclick="location.href='manage_shift_in_all.html'" value="全体を表示する" /></p>
-                <div class="fillter">
+            <div class="fillter">
             <div class="col-md-12" style="text-align:center;">
               {!! Form::open( ['id' => 'frmSearch', 'method' => 'get', 'class'=>'form-inline', 'route' => 'backend.shifts.index']) !!}
               <button type="submit" class="btn btn-sm btn-page no-border" name="prev" value="{{$prevDate}}" id="prev" onclick="location.href='manage_shift_in_all.html'">&lt;&lt; 前月</button>&nbsp;&nbsp;&nbsp;&nbsp;

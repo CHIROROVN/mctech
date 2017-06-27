@@ -104,6 +104,7 @@ Route::group(['prefix' => 'manage', 'namespace' => 'Backend'], function () {
     
     Route::post('/shifts', ['as' => 'backend.shifts.regist', 'uses' => 'ShiftController@postIndex']);
     
+    //Shift Shubestu
     Route::get('/shifts/shubetsu', ['as' => 'backend.shifts.shubetsu.index', 'uses' => 'ShiftKindController@shubetsu']);    
     Route::get('/shifts/shubetsu/regist', ['as' => 'backend.shifts.shubetsu.regist', 'uses' => 'ShiftKindController@shubetsuRegist']);
     Route::post('/shifts/shubetsu/regist', ['as' => 'backend.shifts.shubetsu.regist', 'uses' => 'ShiftKindController@postShubetsuRegist']);
@@ -116,6 +117,7 @@ Route::group(['prefix' => 'manage', 'namespace' => 'Backend'], function () {
     Route::get('/shifts/shubetsu/delete/{id}/confirm', ['as' => 'backend.shifts.shubetsu.delete_cnf', 'uses' => 'ShiftKindController@deleteCnf']);
     Route::get('/shifts/shubetsu/delete_save/{id}', ['as' => 'backend.shifts.shubetsu.delete_save', 'uses' => 'ShiftKindController@saveDelete']);
 
+    //Shift syukkin
     Route::get('/shifts/syukkin', ['as' => 'backend.shifts.syukkin.index', 'uses' => 'ShiftWorkingController@index']);
     Route::get('/shifts/syukkin/regist', ['as' => 'backend.shifts.syukkin.regist', 'uses' => 'ShiftWorkingController@regist']);
     Route::post('/shifts/syukkin/regist', ['as' => 'backend.shifts.syukkin.regist', 'uses' => 'ShiftWorkingController@postRegist']);
@@ -128,13 +130,15 @@ Route::group(['prefix' => 'manage', 'namespace' => 'Backend'], function () {
     Route::get('/shifts/syukkin/delete/{id}/confirm', ['as' => 'backend.shifts.syukkin.delete_cnf', 'uses' => 'ShiftWorkingController@deleteCnf']);
     Route::get('/shifts/syukkin/delete_save/{id}', ['as' => 'backend.shifts.syukkin.delete_save', 'uses' => 'ShiftWorkingController@saveDelete']);
 
+    //Shift Holiday
+    Route::get('/shifts/holiday', ['as' => 'backend.shifts.holiday.index', 'uses' => 'ShiftHolidayController@index']);
 
-    Route::get('/shifts/holiday', ['as' => 'backend.shifts.holiday.index', 'uses' => 'ShiftController@holiday']);
-    Route::post('/shifts/holiday', ['as' => 'backend.shifts.holiday.index', 'uses' => 'ShiftController@postHoliday']);
 
-    Route::get('/shifts/holiday/regist_cnf', ['as' => 'backend.shifts.holiday.regist_cnf', 'uses' => 'ShiftController@holidayRegistCnf']);
+    Route::post('/shifts/holiday', ['as' => 'backend.shifts.holiday.index', 'uses' => 'ShiftHolidayController@postHoliday']);
+
+    Route::get('/shifts/holiday/regist_cnf', ['as' => 'backend.shifts.holiday.regist_cnf', 'uses' => 'ShiftHolidayController@holidayRegistCnf']);
     
-    Route::get('/shifts/holiday/regist_complete', ['as' => 'backend.shifts.holiday.regist_complete', 'uses' => 'ShiftController@holidayRegistComplete']);
+    Route::get('/shifts/holiday/regist_complete', ['as' => 'backend.shifts.holiday.regist_complete', 'uses' => 'ShiftHolidayController@holidayRegistComplete']);
 
     //material
     Route::get('materials', ['as' => 'backend.materials.index', 'uses' => 'MaterialController@index']);
