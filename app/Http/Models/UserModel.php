@@ -123,4 +123,8 @@ class UserModel extends CommonModel
         $db = $results->orderBy($this->fieldOrderBy, $this->valueOrderBy)->get();
         return $db;
     }
+
+    public function getListUser(){
+        return DB::table($this->table)->where('last_kind', '<>', DELETE)->orderBy('u_name', '=', 'asc')->pluck('u_name', 'u_id');
+    }
 }

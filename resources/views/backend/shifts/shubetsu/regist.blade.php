@@ -56,7 +56,7 @@
       </div>
     </section>
     <!--END PAGE CONTENT -->
-        <script>
+      <script>
       $(document).ready(function(){
         $("#kshift_color").on("change", function (){
           $(this).removeAttr( "class" );

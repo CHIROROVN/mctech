@@ -9,10 +9,16 @@
       <p><input type="button" class="btn btn-sm btn-header" name="button" onclick="location.href='manage_shift_in_all.html'" value="全体を表示する" /></p>
                 <div class="fillter">
             <div class="col-md-12" style="text-align:center;">
+              {!! Form::open( ['id' => 'frmSearch', 'method' => 'get', 'class'=>'form-inline', 'route' => 'backend.shifts.index']) !!}
+              <button type="submit" class="btn btn-sm btn-page no-border" name="prev" value="{{$prevDate}}" id="prev" onclick="location.href='manage_shift_in_all.html'">&lt;&lt; 前月</button>&nbsp;&nbsp;&nbsp;&nbsp;
 
-              <button type="submit" class="btn btn-sm btn-page no-border" name="prev" value="" id="prev" onclick="location.href='manage_shift_in_all.html'">&lt;&lt; 前月</button>&nbsp;&nbsp;&nbsp;&nbsp;
-              <span id="text-year">2017</span>年<span id="text-month">03</span>月&nbsp;&nbsp;&nbsp;&nbsp;
-              <button type="submit" class="btn btn-sm btn-page no-border" name="next" value="" id="next">翌月 &gt;&gt;</button>&nbsp;&nbsp;&nbsp;&nbsp;
+              <!-- <span id="text-year">{{$yearCurr}}</span>年<span id="text-month">{{$monthCurr}}</span>月&nbsp;&nbsp;&nbsp;&nbsp; -->
+              <span id="text-year">{{$yearCurr}}</span>
+              
+              <button type="submit" class="btn btn-sm btn-page no-border" name="next" value="{{$nextDate}}" id="next">翌月 &gt;&gt;
+              </button>&nbsp;&nbsp;&nbsp;&nbsp;
+
+              {!! Form::close() !!}
             </div>
           </div>
       <br>

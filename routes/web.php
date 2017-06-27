@@ -98,14 +98,17 @@ Route::group(['prefix' => 'manage', 'namespace' => 'Backend'], function () {
     | Backend shift page
     |--------------------------------------------------------------------------
     */
+
+
+    Route::get('/shifts', ['as' => 'backend.shifts.index', 'uses' => 'ShiftController@index']);
     
-    Route::get('/shifts/shubetsu', ['as' => 'backend.shifts.shubetsu.index', 'uses' => 'ShiftKindController@shubetsu']);
+    Route::post('/shifts', ['as' => 'backend.shifts.regist', 'uses' => 'ShiftController@postIndex']);
     
+    Route::get('/shifts/shubetsu', ['as' => 'backend.shifts.shubetsu.index', 'uses' => 'ShiftKindController@shubetsu']);    
     Route::get('/shifts/shubetsu/regist', ['as' => 'backend.shifts.shubetsu.regist', 'uses' => 'ShiftKindController@shubetsuRegist']);
     Route::post('/shifts/shubetsu/regist', ['as' => 'backend.shifts.shubetsu.regist', 'uses' => 'ShiftKindController@postShubetsuRegist']);
     Route::get('/shifts/shubetsu/regist_save', ['as' => 'backend.shifts.shubetsu.regist_save', 'uses' => 'ShiftKindController@saveRegist']);
     Route::get('/shifts/shubetsu/regist_confirm', ['as' => 'backend.shifts.shubetsu.regist_cnf', 'uses' => 'ShiftKindController@shubetsuRegistCnf']);
-
     Route::get('/shifts/shubetsu/change/{id}', ['as' => 'backend.shifts.shubetsu.change', 'uses' => 'ShiftKindController@getChange']);
     Route::post('/shifts/shubetsu/change/{id}', ['as' => 'backend.shifts.shubetsu.change', 'uses' => 'ShiftKindController@postChange']);
     Route::get('/shifts/shubetsu/change/{id}/confirm', ['as' => 'backend.shifts.shubetsu.change_cnf', 'uses' => 'ShiftKindController@changeCnf']);
@@ -113,14 +116,18 @@ Route::group(['prefix' => 'manage', 'namespace' => 'Backend'], function () {
     Route::get('/shifts/shubetsu/delete/{id}/confirm', ['as' => 'backend.shifts.shubetsu.delete_cnf', 'uses' => 'ShiftKindController@deleteCnf']);
     Route::get('/shifts/shubetsu/delete_save/{id}', ['as' => 'backend.shifts.shubetsu.delete_save', 'uses' => 'ShiftKindController@saveDelete']);
 
-    Route::get('/shifts', ['as' => 'backend.shifts.index', 'uses' => 'ShiftsController@index']);
-    Route::post('/shifts', ['as' => 'backend.shifts.regist', 'uses' => 'ShiftController@postIndex']);
+    Route::get('/shifts/syukkin', ['as' => 'backend.shifts.syukkin.index', 'uses' => 'ShiftWorkingController@index']);
+    Route::get('/shifts/syukkin/regist', ['as' => 'backend.shifts.syukkin.regist', 'uses' => 'ShiftWorkingController@regist']);
+    Route::post('/shifts/syukkin/regist', ['as' => 'backend.shifts.syukkin.regist', 'uses' => 'ShiftWorkingController@postRegist']);
+    Route::get('/shifts/syukkin/regist_cnf', ['as' => 'backend.shifts.syukkin.regist_cnf', 'uses' => 'ShiftWorkingController@registCnf']);
+    Route::get('/shifts/syukkin/regist_save', ['as' => 'backend.shifts.syukkin.regist_save', 'uses' => 'ShiftWorkingController@saveRegist']);
+    Route::get('/shifts/syukkin/change/{id}', ['as' => 'backend.shifts.syukkin.change', 'uses' => 'ShiftWorkingController@change']);
+    Route::post('/shifts/syukkin/change/{id}', ['as' => 'backend.shifts.syukkin.change', 'uses' => 'ShiftWorkingController@postChange']);
+    Route::get('/shifts/syukkin/change/{id}/confirm', ['as' => 'backend.shifts.syukkin.change_cnf', 'uses' => 'ShiftWorkingController@changeCnf']);
+    Route::get('/shifts/syukkin/change_save/{id}/confirm', ['as' => 'backend.shifts.syukkin.change_save', 'uses' => 'ShiftWorkingController@saveChange']);    
+    Route::get('/shifts/syukkin/delete/{id}/confirm', ['as' => 'backend.shifts.syukkin.delete_cnf', 'uses' => 'ShiftWorkingController@deleteCnf']);
+    Route::get('/shifts/syukkin/delete_save/{id}', ['as' => 'backend.shifts.syukkin.delete_save', 'uses' => 'ShiftWorkingController@saveDelete']);
 
-    Route::get('/shifts/syukkin', ['as' => 'backend.shifts.syukkin.index', 'uses' => 'ShiftController@syukkin']);
-    Route::get('/shifts/syukkin/regist', ['as' => 'backend.shifts.syukkin.regist', 'uses' => 'ShiftController@syukkinRegist']);
-    Route::post('/shifts/syukkin/regist', ['as' => 'backend.shifts.syukkin.regist', 'uses' => 'ShiftController@postSyukkinRegist']);
-    Route::get('/shifts/syukkin/change', ['as' => 'backend.shifts.syukkin.change', 'uses' => 'ShiftController@syukkinChange']);
-    Route::post('/shifts/syukkin/change', ['as' => 'backend.shifts.syukkin.change', 'uses' => 'ShiftController@postSyukkinChange']);
 
     Route::get('/shifts/holiday', ['as' => 'backend.shifts.holiday.index', 'uses' => 'ShiftController@holiday']);
     Route::post('/shifts/holiday', ['as' => 'backend.shifts.holiday.index', 'uses' => 'ShiftController@postHoliday']);

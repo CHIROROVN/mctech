@@ -26,8 +26,14 @@ class ShiftKindController extends BackendController
     */
     public function shubetsuRegist() {
         $data = array();
-        if(Session::has('kshift_regist')){
-            $data['shubetsu'] = (Object) Session::get('kshift_regist');
+        if(Input::has('action')){
+            if(Session::has('kshift_regist')){
+                $data['shubetsu'] = (Object) Session::get('kshift_regist');
+            }
+        }else{
+            if(Session::has('kshift_regist')){
+                Session::forget('kshift_regist');
+            }
         }
 
         return view('backend.shifts.shubetsu.regist', $data);
@@ -49,7 +55,7 @@ class ShiftKindController extends BackendController
 
         $data['kshift_name']                    = Input::get('kshift_name');
         $data['kshift_color']                   = Input::get('kshift_color');
-        $data['kshift_sort']                    = $max_order;
+        $data['kshift_sort']                    = $max_order + 1;
         $data['last_date']                      = date('Y-m-d H:i:s');
         $data['last_kind']                      = INSERT;
         $data['last_ipadrs']                    = CLIENT_IP_ADRS;

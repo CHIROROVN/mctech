@@ -1,4 +1,5 @@
 <?php
+use Carbon\Carbon;
 
 if (!function_exists('DayJp')) {
 
@@ -28,6 +29,24 @@ if (!function_exists('DayJp')) {
         }
     }
 
-
-    
+    /**
+     * description
+     *
+     * @param date YYYY-mm
+     * @return YYYY or mm or YYYY年mm月
+    **/
+    function splitDate($date=null, $param=null){
+        if(!empty($date)){
+            $dt = explode('-', $date);
+            if($param == 'Y'){
+                return (int) $dt[0];
+            }elseif($param == 'm'){
+                return (int) $dt[1];
+            }else{
+                return $dt[0].'年'.$dt[1].'月';
+            }
+        }else{
+            return '';
+        }
+    }
 }

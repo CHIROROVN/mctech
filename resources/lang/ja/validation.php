@@ -64,4 +64,7 @@ return [
     //ShiftKind Model
     'error_kshift_name_required'                    => '種別名を入力してください。',
 
+    //Working Model
+    'error_working_name_required'                   => '出勤名を入力してください。',
+
 ];

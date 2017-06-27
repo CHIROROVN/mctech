@@ -12,7 +12,6 @@ class WorkingModel
     {
         return array(
                 'working_name'                    => 'required',
-                'working_price'                   => 'required|numeric',
                 );
     }
 
@@ -20,19 +19,12 @@ class WorkingModel
     {
         return array(
             'working_name.required'               => trans('validation.error_working_name_required'),
-            'working_price.required'              => trans('validation.error_working_price_required'),
-            'working_price.numeric'               => trans('validation.error_working_price_numeric'),
-            
             );
     }
 
     //get all Working list
-    public function getAllWorking($working_id=null){
-        if(empty($working_id) || $working_id == 'all'){
-            return DB::table($this->table)->where('last_kind', '<>', DELETE)->orderBy('last_date', '=', 'desc')->simplePaginate(PAGINATION);
-        }else{
-            return DB::table($this->table)->where('last_kind', '<>', DELETE)->where('working_id', $working_id)->orderBy('last_date', '=', 'desc')->simplePaginate(PAGINATION);
-        }
+    public function getAllWorking(){
+        return DB::table($this->table)->where('last_kind', '<>', DELETE)->orderBy('last_date', '=', 'desc')->orderBy('last_date', '=', 'desc')->get();
     }
 
     public function getListWorking(){
@@ -57,6 +49,11 @@ class WorkingModel
     public function update($id, $data)
     {
         return DB::table($this->table)->where('working_id', $id)->update($data);
+    }
+
+    public function get_max_order()
+    {
+        return DB::table($this->table)->where('last_kind', '<>', DELETE)->max('working_sort');
     }
 
 }

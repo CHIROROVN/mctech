@@ -1,15 +1,55 @@
 <?php namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Backend\BackendController;
+use App\Http\Models\UserModel;
+use Input;
+use Session;
+use Validator;
+use Carbon\Carbon;
 
 class ShiftController extends BackendController
 {
+
    /*
     |-----------------------------------
     | get view shift
     |-----------------------------------
     */
-    public function index() {        
-        return view('backend.shifts.index');
+    public function index() {
+        $clsUsers = new UserModel();
+        $data['users'] = $clsUsers->getListUser();
+        $cDateNow = Carbon::now();
+        $strDate = $cDateNow->toDateString();
+
+        $dt = Carbon::createFromDate(2017, 06);
+
+
+        if(Input::has('prev')){
+            $prevYear = (int) splitDate(Input::get('prev'), 'Y');
+            $data['yearCurr'] = $prevYear;
+            $prevMonth = (int) splitDate(Input::get('prev'), 'm') - 1;
+            $data['monthCurr'] = $prevMonth;
+            $data['prevDate'] = $prevYear.'-'.$prevMonth;
+        }else{
+            $data['yearCurr'] = date('Y');
+            $data['monthCurr'] = (int) date('m') + 0;
+            $data['prevDate'] = date('Y').'-'.(int) date('m');
+        }
+
+        if(Input::has('next')){
+            $nextYear = (int) splitDate(Input::get('next'), 'Y');
+            $data['yearCurr'] = $nextYear;
+            $nextMonth = (int) splitDate(Input::get('next'), 'm') + 1;
+            $data['monthCurr'] = $nextMonth;
+            $data['nextDate'] = $nextYear.'-'.$nextMonth;
+        }else{
+            $data['yearCurr'] = date('Y');
+            $data['monthCurr'] = (int) date('m') + 0;
+            $data['nextDate'] = date('Y').'-'.(int) date('m');
+        }
+
+
+
+        return view('backend.shifts.index', $data);
     }
 
     /*
@@ -17,7 +57,7 @@ class ShiftController extends BackendController
     | post view shift
     |-----------------------------------
     */
-    public function postIndex() {        
+    public function postIndex() {
     
     }
 
