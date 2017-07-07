@@ -24,9 +24,18 @@ class HolidayModel
 
     //get all Working list
     public function getAllHoliday($date=null){
-            return DB::table($this->table)->select('working_id')->where('last_kind', '<>', DELETE)
-            ->where('holiday_day', '=', $date)->first();
+        return DB::table($this->table)->select('working_id')->where('last_kind', '<>', DELETE)
+        ->where('holiday_day', '=', $date)->first();
+    }
+
+    public function checkExistHoliday($year=null, $month=null){
+        $data = DB::table($this->table)->where('last_kind', '<>', DELETE)->whereYear('holiday_day', '=', $year)->whereMonth('holiday_day', '=', $month)->first();
+        if(!empty($data)){
+            return true;
+        }else{
+            return false;
         }
+    }
 
     public function insert($data)
     {
@@ -40,7 +49,7 @@ class HolidayModel
 
     public function getHistoryId($holiday_day, $working_id)
     {
-        return DB::table($this->table)->select('holiday_id')->where('last_kind', '<>', DELETE)->where('holiday_day', $holiday_day)->where('working_id', $working_id)->first();
+        return DB::table($this->table)->select('holiday_id')->where('last_kind', '<>', DELETE)->where('holiday_day', '=', $holiday_day)->where('working_id', $working_id)->first();
     }
 
     public function get_max_order()

@@ -37,12 +37,11 @@
       <table class=" table-bordered margin-bottom manage_shift_in" style="margin:10px auto; width:500px;">
         <tbody>
         @foreach($holiday as $kh => $valH)
-        <?php  $arrValH = explode('_', $valH);?>
           <tr>
             <th style="padding: 11px; width: 147px;">{{@c2Digit(sDate($kh, 'm'))}}/{{@c2Digit(sDate($kh, 'd'))}}({{DayJp($kh)}})</th>
             <td style="width: 311px;">
               @foreach($working as $kw => $valW)
-                @if($valW->working_id == $arrValH[0])
+                @if($valW->working_id == $valH)
                   <font color="{{$valW->working_color}}">{{$valW->working_name}}</font>
                 @endif
               @endforeach

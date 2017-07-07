@@ -17,7 +17,6 @@ class ShiftController extends BackendController
     |-----------------------------------
     */
     public function index() {
-
         $cShowDate = Carbon::now();
         $data['ymShow'] = $cShowDate->toDateString();
 
@@ -67,7 +66,19 @@ class ShiftController extends BackendController
 
     public static function getShiftByDate($shift_date, $u_id){
         $clsShift = new ShiftModel();
-        return (Object) $clsShift->getShiftByDate($shift_date, $u_id);
+        $shift = $clsShift->getShiftByDate($shift_date, $u_id);
+        if(!empty($shift)){
+            return (Object) $shift;
+        }else{
+            return array();
+        }
+    }
+
+    public static function kShiftColor($kshift_id){
+        $clsShiftKind = new ShiftKindModel();
+        $data = $clsShiftKind->kShiftColor($kshift_id);
+        if(!empty($data)) return $data->kshift_color;
+        else return '';
     }
 
     /*
@@ -98,7 +109,8 @@ class ShiftController extends BackendController
             $arrSKey = explode('_', $ks);
             $u_id = $arrSKey[1];
             $shift_date = date('Y-m-d', strtotime($arrSKey[0]));
-            $kshift_id = $valS;
+            $arrVal = explode('_', $valS);
+            $kshift_id = $arrVal[0];
 
 
             if(!empty($inputs['memo'])){

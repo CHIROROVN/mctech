@@ -113,4 +113,24 @@ if (!function_exists('DayJp')) {
         if(!empty($shifts)) return $shifts;
         else return '';
     }
+
+    function KShiftColor($kshift_id){
+        $color = App\Http\Controllers\Backend\ShiftController::KShiftColor($kshift_id);
+        if(!empty($color)){
+            $cc = explode('#', $color);
+            return $cc[1];
+        }else{
+            return '';
+        }
+    }
+
+    function WorkingColor($working_id){
+        $color = App\Http\Controllers\Backend\ShiftHolidayController::WorkingColor($working_id);
+        if(!empty($color)){
+            $cc = explode('#', $color);
+            return $cc[1];
+        }else{
+            return '';
+        }
+    }
 }

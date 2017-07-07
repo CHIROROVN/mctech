@@ -60,4 +60,8 @@ class WorkingModel
         return DB::table($this->table)->where('last_kind', '<>', DELETE)->max('working_sort');
     }
 
+    public function WorkingColor($working_id){
+        return DB::table($this->table)->select('working_color')->where('last_kind', '<>', DELETE)->where('working_id', '=', $working_id)->first();
+    }
+
 }

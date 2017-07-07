@@ -2,6 +2,7 @@
 use App\Http\Controllers\Backend\BackendController;
 use App\Http\Models\HolidayModel;
 use App\Http\Models\WorkingModel;
+use App\Http\Models\ShiftKindModel;
 use Input;
 use Session;
 use Validator;
@@ -71,11 +72,18 @@ class ShiftHolidayController extends BackendController
         
     }
 
+    public static function WorkingColor($working_id){
+        $clsWorking = new WorkingModel();
+        $data = $clsWorking->WorkingColor($working_id);
+        if(!empty($data)) return $data->working_color;
+        else return '';
+    }
+
     public static function getHistoryId($holiday_day, $working_id){
         $clsHoliday = new HolidayModel();
-        $holiday_id = $clsHoliday->getHistoryId($holiday_day, $working_id);
-        if(!empty($holiday_id)){
-            return $holiday_id;
+        $holiday = $clsHoliday->getHistoryId($holiday_day, $working_id);
+        if(!empty($holiday)){
+            return $holiday->holiday_id;
         }else{
             return '';
         }
@@ -87,9 +95,10 @@ class ShiftHolidayController extends BackendController
     |-----------------------------------
     */
     public function postHoliday() {
-        Session::push('holidays', Input::get('holidays'));
+        $holidays = Input::all();
+        unset($holidays['_token']);
+        Session::push('holidays', $holidays);
         return redirect()->route('backend.shifts.holiday.confirm');
-
     }
 
     /*
@@ -112,8 +121,8 @@ class ShiftHolidayController extends BackendController
                 $holidays = $valHoliday;
             }
         }
+        unset($holidays['curr_date']);
         $data['holiday'] = $holidays;
-
         return view('backend.shifts.holiday.confirm', $data);
     }
 
@@ -130,18 +139,46 @@ class ShiftHolidayController extends BackendController
             foreach(Session::get('holidays') as $hd){
                 $holidays = $hd;
             }
-            foreach ($holidays as $kh => $valH) {
-                $data['holiday_day'] = date('Y-m-d', strtotime($kh));
-                $data['working_id'] = $valH;
-                $data['last_date']  = date('Y-m-d H:i:s');
-                $data['last_kind']  = INSERT;
-                $data['last_ipadrs'] = "'" . CLIENT_IP_ADRS . "'";
-                $data['last_user'] = 1;
 
-                if($clsHoliday->insert($data)){
-                    $flag = true;
-                }else{
-                    $flag = false;
+            $arrDate = explode('-', $holidays['curr_date']);
+
+            $hld = $clsHoliday->checkExistHoliday($arrDate[0], $arrDate[1]);
+            unset($holidays['curr_date']);
+
+            if($hld){ //Update
+                foreach ($holidays as $kh => $valH) {
+                    $arrKey = explode('_', $kh);
+                    $arrVal = explode('_', $valH);
+                    $id = $arrKey[1];
+                    $data['holiday_day'] = date('Y-m-d', strtotime($arrKey[0]));
+                    $data['working_id'] = $arrVal[0];
+                    $data['last_date']  = date('Y-m-d H:i:s');
+                    $data['last_kind']  = UPDATE;
+                    $data['last_ipadrs'] = "'" . CLIENT_IP_ADRS . "'";
+                    $data['last_user'] = 1;
+
+                    if($clsHoliday->update($id, $data)){
+                        $flag = true;
+                    }else{
+                        $flag = false;
+                    }
+                }
+            }else{ //Insert
+                foreach ($holidays as $kh => $valH) {
+                    $arrKey = explode('_', $kh);
+                    $arrVal = explode('_', $valH);
+                    $data['holiday_day'] = date('Y-m-d', strtotime($arrKey[0]));
+                    $data['working_id'] = $arrVal[0];
+                    $data['last_date']  = date('Y-m-d H:i:s');
+                    $data['last_kind']  = INSERT;
+                    $data['last_ipadrs'] = "'" . CLIENT_IP_ADRS . "'";
+                    $data['last_user'] = 1;
+
+                    if($clsHoliday->insert($data)){
+                        $flag = true;
+                    }else{
+                        $flag = false;
+                    }
                 }
             }
 
@@ -176,6 +213,7 @@ class ShiftHolidayController extends BackendController
                 $holidays = $valHoliday;
             }
         }
+        unset($holidays['curr_date']);
         $data['holiday'] = $holidays;
 
         return view('backend.shifts.holiday.complete', $data);

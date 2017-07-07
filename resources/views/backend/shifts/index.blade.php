@@ -60,12 +60,12 @@
 							<th style="padding: 11px;">{{c2Digit(splitDate($ymShow, 'm'))}}/{{c2Digit($m)}}({{DayJp($strDate)}})</th>
 							@if(count(getListUser()) > 0)
 								@foreach(getListUser() as $u_id => $u_name)
-								<?php $shift = Shifts($strDate, $u_id); ?>
+								<?php $shift = Shifts($strDate, $u_id);?>
 									<td>
-										<select style="margin-bottom:10px;" class="kshift" name="shift[{{$strDate}}_{{$u_id}}]" id="{{$strDate}}#kshift#{{$u_id}}">
+										<select style="margin-bottom:10px;" class="kshift shift-color-{{@KShiftColor(@$shift->kshift_id)}}" name="shift[{{$strDate}}_{{$u_id}}]" id="{{$strDate}}#kshift#{{$u_id}}">
 											@if(!empty(Kshift()))
 												@foreach(Kshift() as $kshift)
-													<option style="color: {{$kshift->kshift_color}}" value="{{$kshift->kshift_id}}" @if($kshift->kshift_id == @$shift->kshift_id)) selected @endif >{{$kshift->kshift_name}}</option>
+													<option style="color: {{$kshift->kshift_color}}" value="{{$kshift->kshift_id}}_{{$kshift->kshift_color}}" @if(!empty($shift) && $shift->kshift_id == $kshift->kshift_id)) selected @endif >{{$kshift->kshift_name}}</option>
 												@endforeach
 											@endif
 										</select>

@@ -56,4 +56,8 @@ class ShiftKindModel
         return DB::table($this->table)->where('last_kind', '<>', DELETE)->orderBy('kshift_sort', '=', 'asc')->pluck('kshift_name', 'kshift_id');
     }
 
+    public function kShiftColor($kshift_id){
+        return DB::table($this->table)->select('kshift_color')->where('last_kind', '<>', DELETE)->where('kshift_id', '=', $kshift_id)->first();
+    }
+
 }
