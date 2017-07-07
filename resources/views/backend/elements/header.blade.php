@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="{{ asset('') }}public/backend/common/css/jquery-ui.min.css">
 <script src="{{ asset('') }}public/backend/common/js/jquery.min.js"></script>
 <script src="{{ asset('') }}public/backend/js/remodal/remodal.min.js"></script>
+<script src="{{ asset('') }}public/backend/common/js/bootstrap.min.js"></script>
 </head>
 <body>
   <!-- Header -->

@@ -1,6 +1,8 @@
 <?php namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Backend\BackendController;
 use App\Http\Models\UserModel;
+use App\Http\Models\ShiftKindModel;
+use App\Http\Models\ShiftModel;
 use Input;
 use Session;
 use Validator;
@@ -15,41 +17,57 @@ class ShiftController extends BackendController
     |-----------------------------------
     */
     public function index() {
-        $clsUsers = new UserModel();
-        $data['users'] = $clsUsers->getListUser();
-        $cDateNow = Carbon::now();
-        $strDate = $cDateNow->toDateString();
 
-        $dt = Carbon::createFromDate(2017, 06);
+        $cShowDate = Carbon::now();
+        $data['ymShow'] = $cShowDate->toDateString();
 
+        $prevDate = Carbon::now()->subMonth();
+        $data['prevDate'] = $prevDate->toDateString();
+
+        $nextDate = Carbon::now()->addMonth();
+        $data['nextDate'] = $nextDate->toDateString();
+
+        $sYear = date('Y');
+        $sMonth = date('m');
 
         if(Input::has('prev')){
-            $prevYear = (int) splitDate(Input::get('prev'), 'Y');
-            $data['yearCurr'] = $prevYear;
-            $prevMonth = (int) splitDate(Input::get('prev'), 'm') - 1;
-            $data['monthCurr'] = $prevMonth;
-            $data['prevDate'] = $prevYear.'-'.$prevMonth;
-        }else{
-            $data['yearCurr'] = date('Y');
-            $data['monthCurr'] = (int) date('m') + 0;
-            $data['prevDate'] = date('Y').'-'.(int) date('m');
+            $sYear = splitDate(Input::get('prev'),'y');
+            $sMonth = splitDate(Input::get('prev'),'m');
+
+            $data['ymShow'] = Carbon::createFromDate($sYear, $sMonth)->toDateString();
+            $prevDate = Carbon::createFromDate($sYear, $sMonth)->subMonth();
+            $data['prevDate'] = $prevDate->toDateString();
+            $nextDate =  Carbon::createFromDate($sYear, $sMonth)->addMonth();
+            $data['nextDate'] = $nextDate->toDateString();
         }
 
         if(Input::has('next')){
-            $nextYear = (int) splitDate(Input::get('next'), 'Y');
-            $data['yearCurr'] = $nextYear;
-            $nextMonth = (int) splitDate(Input::get('next'), 'm') + 1;
-            $data['monthCurr'] = $nextMonth;
-            $data['nextDate'] = $nextYear.'-'.$nextMonth;
-        }else{
-            $data['yearCurr'] = date('Y');
-            $data['monthCurr'] = (int) date('m') + 0;
-            $data['nextDate'] = date('Y').'-'.(int) date('m');
+            $sYear = splitDate(Input::get('next'),'y');
+            $sMonth = splitDate(Input::get('next'),'m');
+
+            $data['ymShow'] = Carbon::createFromDate($sYear, $sMonth)->toDateString();
+            $prevDate = Carbon::createFromDate($sYear, $sMonth)->subMonth();
+            $data['prevDate'] = $prevDate->toDateString();
+            $nextDate =  Carbon::createFromDate($sYear, $sMonth)->addMonth();
+            $data['nextDate'] = $nextDate->toDateString();
         }
 
-
-
         return view('backend.shifts.index', $data);
+    }
+
+    public static function getListUser(){
+        $clsUsers = new UserModel();
+        return (Object) $clsUsers->getListUser();
+    }
+
+    public static function getAllKshift(){
+        $clsShiftKind = new ShiftKindModel();
+        return (Object) $clsShiftKind->getAllKshift();
+    }
+
+    public static function getShiftByDate($shift_date, $u_id){
+        $clsShift = new ShiftModel();
+        return (Object) $clsShift->getShiftByDate($shift_date, $u_id);
     }
 
     /*
@@ -58,125 +76,124 @@ class ShiftController extends BackendController
     |-----------------------------------
     */
     public function postIndex() {
-    
+        $clsShift = new ShiftModel();
+        $inputDate = Input::get('curr_date');
+        $arrDate = explode('-', $inputDate);
+        $shift_rev = $clsShift->checkExistShift($arrDate[0], $arrDate[1]);
+
+        if(empty($shift_rev)) $shift_rev = 0;
+        $flag = false;
+
+        $inputs = Input::all();
+
+        unset($inputs['_token']);
+        unset($inputs['curr_date']);
+
+        $shifts = $inputs['shift'];
+
+        $shift_memo = 'NULL';
+        $shift_star = NULL;
+
+        foreach ($shifts as $ks => $valS) {
+            $arrSKey = explode('_', $ks);
+            $u_id = $arrSKey[1];
+            $shift_date = date('Y-m-d', strtotime($arrSKey[0]));
+            $kshift_id = $valS;
+
+
+            if(!empty($inputs['memo'])){
+                $shift_memo = 'NULL';
+                foreach ($inputs['memo'] as $km => $valM) {
+                    $arrMKey = explode('_', $km);
+                    if($arrMKey[0] == $shift_date && $arrMKey[1] == $u_id){
+                        $shift_memo = $valM;
+                    }
+                }
+            }
+
+            if(!empty($inputs['star'])){
+                $shift_star = NULL;
+                foreach ($inputs['star'] as $kst => $valSt) {
+                    $arrStKey = explode('_', $kst);
+                    if($arrStKey[0] == $shift_date && $arrStKey[1] == $u_id){
+                        $shift_star = $valSt;
+                    }
+                }
+            }
+
+            $data = array(
+                //'shift_id'   => NULL,
+                'shift_date' => date('Y-m-d', strtotime($shift_date)),
+                'u_id'       => $u_id,
+                'kshift_id'  => $kshift_id,
+                'shift_memo' => $shift_memo,
+                'shift_star' => $shift_star,
+                'shift_rev'  => $shift_rev + 1,
+                'last_date'  => date('Y-m-d H:i:s'),
+                'last_kind'  => ($shift_rev == 0) ? INSERT : UPDATE,
+                'last_ipadrs' => "'" . CLIENT_IP_ADRS . "'",
+                'last_user'  => 1
+                );
+
+            if($clsShift->insert($data)){
+                $flag = true;
+            }else{
+                $flag = false;
+            }
+        }
+
+        if($flag){
+            Session::flash('success', trans('common.msg_shift_update_success'));
+            if(Input::has('next')){
+                $next = Input::get('next');
+                return redirect()->route('backend.shifts.index', ['next'=>$parm]);
+            }elseif(Input::has('prev')){
+                $prev = Input::get('prev');
+                return redirect()->route('backend.shifts.index', ['prev'=>$parm]);
+            }else{
+                return redirect()->route('backend.shifts.index');
+            }
+        }else{
+            Session::flash('danger', trans('common.msg_shift_update_danger'));
+            if(Input::has('next')){
+                $next = Input::get('next');
+                return redirect()->route('backend.shifts.index', ['next'=>$parm]);
+            }elseif(Input::has('prev')){
+                $prev = Input::get('prev');
+                return redirect()->route('backend.shifts.index', ['prev'=>$parm]);
+            }else{
+                return redirect()->route('backend.shifts.index');
+            }
+        }
+
     }
 
     /*
     |-----------------------------------
-    | get view shift shubetsu
+    | get view shift confirm
     |-----------------------------------
     */
-    public function shubetsu() {        
-        return view('backend.shifts.shubetsu.index');
+    public function shiftCnf(){
+        $data = array();
+        // $clsShiftKind = new ShiftKindModel();
+        // $data['kshift'] = $clsShiftKind->getListKShift();
+        // if(Session::has('shifts')){
+        //     $shifts = array();
+        //     foreach (Session::get('shifts') as $value) {
+        //         $shifts = $value;
+        //     }
+
+        //     $currDate = $shifts['curr_date'];
+        //     $arrCurrDate = explode('-', $currDate);
+        //     $data['year'] = $arrCurrDate[0];
+        //     $data['month'] = $arrCurrDate[1];
+        //     $data['max_day'] = $arrCurrDate[2];
+        //     unset($shifts['curr_date']);
+        // }
+
+        // $data['shifts'] = $shifts;
+        return view('backend.shifts.confirm', $data);
     }
 
-    /*
-    |-----------------------------------
-    | get view shift shubetsu regist
-    |-----------------------------------
-    */
-    public function shubetsuRegist() {        
-        return view('backend.shifts.shubetsu.regist');
-    }
-
-    /*
-    |-----------------------------------
-    | post shift shubetsu regist
-    |-----------------------------------
-    */
-    public function postShubetsuRegist() {        
-        
-    }
-
-    /*
-    |-----------------------------------
-    | get view shift shubetsu change
-    |-----------------------------------
-    */
-    public function shubetsuChange() {        
-        return view('backend.shifts.shubetsu.change');
-    }
-
-    /*
-    |-----------------------------------
-    | post shift shubetsu change
-    |-----------------------------------
-    */
-    public function postShubetsuChange() {        
-        
-    }
-
-        /*
-    |-----------------------------------
-    | get view shift syukkin
-    |-----------------------------------
-    */
-    public function syukkin() {        
-        return view('backend.shifts.syukkin.index');
-    }
-
-    /*
-    |-----------------------------------
-    | get view shift syukkin regist
-    |-----------------------------------
-    */
-    public function syukkinRegist() {        
-        return view('backend.shifts.syukkin.regist');
-    }
-
-    /*
-    |-----------------------------------
-    | post shift syukkin regist
-    |-----------------------------------
-    */
-    public function postSyukkinRegist() {        
-        
-    }
-
-    /*
-    |-----------------------------------
-    | get view shift syukkin change
-    |-----------------------------------
-    */
-    public function syukkinChange() {        
-        return view('backend.shifts.syukkin.change');
-    }
-
-    /*
-    |-----------------------------------
-    | post shift syukkin change
-    |-----------------------------------
-    */
-    public function postSyukkinChange() {        
-        
-    }
-
-    /*
-    |-----------------------------------
-    | get view shift holiday index
-    |-----------------------------------
-    */
-    public function holiday() {        
-        return view('backend.shifts.holiday.index');
-    }
-
-    /*
-    |-----------------------------------
-    | post shift holiday index
-    |-----------------------------------
-    */
-    public function postHolidayRegist() {        
-        
-    }
-
-    /*
-    |-----------------------------------
-    | get view shift holiday comlete
-    |-----------------------------------
-    */
-    public function holidayRegistComplete() {
-        return view('backend.shifts.holiday.complete');
-    }
-    
 
 }

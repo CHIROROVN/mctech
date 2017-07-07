@@ -26,19 +26,21 @@
         {!! Form::open( ['id' => 'frmHoliday', 'class' => 'form-horizontal','method' => 'post', 'route' => 'backend.shifts.holiday.index', 'enctype'=>'multipart/form-data', 'accept-charset'=>'utf-8']) !!}
         <table class=" table-bordered margin-bottom manage_shift_in" style="margin:10px auto; width:500px;">
           <tbody>
-          @for($m=1; $m<=DayOfMonth(splitDate($ymShow, 'm'), splitDate($ymShow, 'y')); $m++)
+          @for($m=1; $m <= get_days_in_month(splitDate($ymShow, 'm'), splitDate($ymShow, 'y')); $m++)
           <?php $strDate =  splitDate($ymShow, 'y').'-'.c2Digit(splitDate($ymShow, 'm')).'-'.c2Digit($m);?>
             <tr>
               <th style="padding: 11px;">{{c2Digit(splitDate($ymShow, 'm'))}}/{{c2Digit($m)}}({{DayJp($strDate)}})</th>
               <td>
-                <select name="working[]" style="width: 180px;">
+                <select name="holidays[{{$strDate}}]" style="width: 180px;">
                 @if(count($working)>0)
                   @foreach($working as $wk)
+                  
                     <option value="{{$wk->working_id}}" style="color: {{$wk->working_color}};" @if($wk->working_id == working_by_date($strDate)) selected="" @endif>{{$wk->working_name}}</option>
+                  }
                   @endforeach
                 @endif
                 </select>
-                <input type="hidden" name="days[]" value="{{$strDate}}">
+                <!-- <input type="hidden" name="days[{{$m}}]" value="{{$strDate}}"> -->
               </td>
             <tr>
             @endfor

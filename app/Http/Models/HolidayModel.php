@@ -38,6 +38,11 @@ class HolidayModel
         return DB::table($this->table)->where('last_kind', '<>', DELETE)->where('holiday_id', $id)->first();
     }
 
+    public function getHistoryId($holiday_day, $working_id)
+    {
+        return DB::table($this->table)->select('holiday_id')->where('last_kind', '<>', DELETE)->where('holiday_day', $holiday_day)->where('working_id', $working_id)->first();
+    }
+
     public function get_max_order()
     {
         return DB::table($this->table)->where('last_kind', '<>', DELETE)->max('holiday_sort');

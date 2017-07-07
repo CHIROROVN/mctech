@@ -101,11 +101,11 @@ Route::group(['prefix' => 'manage', 'namespace' => 'Backend'], function () {
 
 
     Route::get('/shifts', ['as' => 'backend.shifts.index', 'uses' => 'ShiftController@index']);
-    
     Route::post('/shifts', ['as' => 'backend.shifts.regist', 'uses' => 'ShiftController@postIndex']);
+    Route::get('/shifts/confirm', ['as' => 'backend.shifts.confirm', 'uses' => 'ShiftController@shiftCnf']);
     
     //Shift Shubestu
-    Route::get('/shifts/shubetsu', ['as' => 'backend.shifts.shubetsu.index', 'uses' => 'ShiftKindController@shubetsu']);    
+    Route::get('/shifts/shubetsu', ['as' => 'backend.shifts.shubetsu.index', 'uses' => 'ShiftKindController@shubetsu']);
     Route::get('/shifts/shubetsu/regist', ['as' => 'backend.shifts.shubetsu.regist', 'uses' => 'ShiftKindController@shubetsuRegist']);
     Route::post('/shifts/shubetsu/regist', ['as' => 'backend.shifts.shubetsu.regist', 'uses' => 'ShiftKindController@postShubetsuRegist']);
     Route::get('/shifts/shubetsu/regist_save', ['as' => 'backend.shifts.shubetsu.regist_save', 'uses' => 'ShiftKindController@saveRegist']);
@@ -133,12 +133,11 @@ Route::group(['prefix' => 'manage', 'namespace' => 'Backend'], function () {
     //Shift Holiday
     Route::get('/shifts/holiday', ['as' => 'backend.shifts.holiday.index', 'uses' => 'ShiftHolidayController@index']);
 
-
     Route::post('/shifts/holiday', ['as' => 'backend.shifts.holiday.index', 'uses' => 'ShiftHolidayController@postHoliday']);
 
-    Route::get('/shifts/holiday/regist_cnf', ['as' => 'backend.shifts.holiday.regist_cnf', 'uses' => 'ShiftHolidayController@holidayRegistCnf']);
-    
-    Route::get('/shifts/holiday/regist_complete', ['as' => 'backend.shifts.holiday.regist_complete', 'uses' => 'ShiftHolidayController@holidayRegistComplete']);
+    Route::get('/shifts/holiday/confirm', ['as' => 'backend.shifts.holiday.confirm', 'uses' => 'ShiftHolidayController@holidayCnf']);
+    Route::get('/shifts/holiday/save', ['as' => 'backend.shifts.holiday.save', 'uses' => 'ShiftHolidayController@holidaySave']);
+    Route::get('/shifts/holiday/complete', ['as' => 'backend.shifts.holiday.complete', 'uses' => 'ShiftHolidayController@holidayComplete']);
 
     //material
     Route::get('materials', ['as' => 'backend.materials.index', 'uses' => 'MaterialController@index']);

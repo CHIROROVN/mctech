@@ -16,6 +16,10 @@ class ShiftHolidayController extends BackendController
     |-----------------------------------
     */
     public function index() {
+        if(Session::has('holidays')){
+            Session::forget('holidays');
+        }
+
         $cShowDate = Carbon::now();
         $data['ymShow'] = $cShowDate->toDateString();
 
@@ -67,13 +71,90 @@ class ShiftHolidayController extends BackendController
         
     }
 
+    public static function getHistoryId($holiday_day, $working_id){
+        $clsHoliday = new HolidayModel();
+        $holiday_id = $clsHoliday->getHistoryId($holiday_day, $working_id);
+        if(!empty($holiday_id)){
+            return $holiday_id;
+        }else{
+            return '';
+        }
+    }
+
     /*
     |-----------------------------------
     | post shift holiday index
     |-----------------------------------
     */
     public function postHoliday() {
-            echo '<pre>'; print_r(Input::all()); echo '</pre>'; die();
+        Session::push('holidays', Input::get('holidays'));
+        return redirect()->route('backend.shifts.holiday.confirm');
+
+    }
+
+    /*
+    |-----------------------------------
+    | get view shift holiday confirm
+    |-----------------------------------
+    */
+    public function holidayCnf() {
+        if(!Session::has('holidays')){
+            return redirect()->route('backend.shifts.holiday.index');
+        }
+
+        $data = array();
+        $clsWorking = new WorkingModel();
+        $data['working'] = $clsWorking->getWorking();
+        $holidays = array();
+        if(Session::has('holidays')){
+            $holiday = Session::get('holidays');
+            foreach ($holiday as $valHoliday) {
+                $holidays = $valHoliday;
+            }
+        }
+        $data['holiday'] = $holidays;
+
+        return view('backend.shifts.holiday.confirm', $data);
+    }
+
+    /*
+    |-----------------------------------
+    |save shift holiday
+    |-----------------------------------
+    */
+    public function holidaySave() {
+        $clsHoliday = new HolidayModel();
+        $flag = false;
+        if(Session::has('holidays')){
+            $holidays = array();
+            foreach(Session::get('holidays') as $hd){
+                $holidays = $hd;
+            }
+            foreach ($holidays as $kh => $valH) {
+                $data['holiday_day'] = date('Y-m-d', strtotime($kh));
+                $data['working_id'] = $valH;
+                $data['last_date']  = date('Y-m-d H:i:s');
+                $data['last_kind']  = INSERT;
+                $data['last_ipadrs'] = "'" . CLIENT_IP_ADRS . "'";
+                $data['last_user'] = 1;
+
+                if($clsHoliday->insert($data)){
+                    $flag = true;
+                }else{
+                    $flag = false;
+                }
+            }
+
+            if($flag){
+                return redirect()->route('backend.shifts.holiday.complete');
+            }else{
+                Session::flash('danger', trans('common.msg_shift_holiday_update_danger'));
+                return redirect()->route('backend.shifts.holiday.confirm');
+            }
+
+        }else{
+            return redirect()->route('backend.shifts.holiday.index');
+        }
     }
 
     /*
@@ -81,8 +162,23 @@ class ShiftHolidayController extends BackendController
     | get view shift holiday comlete
     |-----------------------------------
     */
-    public function holidayRegistComplete() {
-        return view('backend.shifts.holiday.complete');
+    public function holidayComplete() {
+         if(!Session::has('holidays')){
+            return redirect()->route('backend.shifts.holiday.index');
+        }
+        $data = array();
+        $clsWorking = new WorkingModel();
+        $data['working'] = $clsWorking->getWorking();
+        $holidays = array();
+        if(Session::has('holidays')){
+            $holiday = Session::get('holidays');
+            foreach ($holiday as $valHoliday) {
+                $holidays = $valHoliday;
+            }
+        }
+        $data['holiday'] = $holidays;
+
+        return view('backend.shifts.holiday.complete', $data);
     }
     
 

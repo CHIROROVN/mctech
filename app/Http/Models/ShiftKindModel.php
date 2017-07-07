@@ -52,4 +52,8 @@ class ShiftKindModel
         return DB::table($this->table)->where('kshift_id', $id)->update($data);
     }
 
+    public function getListKShift(){
+        return DB::table($this->table)->where('last_kind', '<>', DELETE)->orderBy('kshift_sort', '=', 'asc')->pluck('kshift_name', 'kshift_id');
+    }
+
 }
